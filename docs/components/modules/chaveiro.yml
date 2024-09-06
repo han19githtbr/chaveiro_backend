@@ -1,0 +1,57 @@
+components:
+  schemas:
+    ChaveiroSchema:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+        name:
+          type: string
+          required: true
+          example: 'Chaveiro 01'
+        imageUrl:
+          type: string
+          example: 'https://example.com/imagem.jpg'
+        phone:
+          type: string
+          example: '(11) 99999-9999'
+        endereco:
+          type: string
+          example: 'Rua A, Nº 123, Bairro B'
+        status:
+          type: string
+          enum: [ativo, inativo]
+          example: 'ativo'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2024-06-05T12:00:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2024-06-05T12:00:00Z'
+
+    ChaveiroPostSchema:
+      type: object
+      properties:
+        name:
+          type: string
+          required: true
+          example: 'Chaveiro 01'
+        imageUrl:
+          type: string
+          example: 'https://example.com/imagem.jpg'
+        phone:
+          type: string
+          example: '(11) 99999-9999'
+        endereco:
+          type: string
+          example: 'Rua A, Nº 123, Bairro B'
+        status:
+          type: string
+          enum: [ativo, inativo]
+          example: 'ativo'

@@ -1,0 +1,92 @@
+paths:
+  /chaveiros:
+    get:
+      summary: 'Rota para obter todos os chaveiros'
+      tags:
+        - Chaveiro
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/PageParameter'
+        - $ref: '#/components/parameters/SizeParameter'
+        - $ref: '#/components/parameters/StatusParameter'
+      responses:
+        '200':
+          description: 'Lista de chaveiros'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ChaveiroSchema'
+
+    post:
+      summary: 'Rota para criar um novo chaveiro'
+      tags:
+        - Chaveiro
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChaveiroPostSchema'
+      responses:
+        '201':
+          description: 'Chaveiro criado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChaveiroSchema'
+
+  /chaveiros/{id}:
+    parameters:
+      - $ref: '#/components/parameters/IdParameter'
+    get:
+      summary: 'Rota para obter um chaveiro pelo ID'
+      tags:
+        - Chaveiro
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'Chaveiro encontrado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChaveiroSchema'
+
+    put:
+      summary: 'Rota para atualizar um chaveiro pelo ID'
+      tags:
+        - Chaveiro
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChaveiroPutSchema'
+      responses:
+        '200':
+          description: 'Chaveiro atualizado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChaveiroSchema'
+
+    delete:
+      summary: 'Rota para excluir um chaveiro pelo ID'
+      tags:
+        - Chaveiro
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'Chaveiro excluído'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChaveiroSchema'

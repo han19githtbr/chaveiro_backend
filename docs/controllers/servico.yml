@@ -1,0 +1,119 @@
+paths:
+  /servicos:
+    get:
+      summary: 'Rota para obter todos os serviços'
+      tags:
+        - Serviço
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/PageParameter'
+        - $ref: '#/components/parameters/SizeParameter'
+        - $ref: '#/components/parameters/StatusParameter'
+      responses:
+        '200':
+          description: 'Lista de serviços'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ServicoSchema'
+
+    post:
+      summary: 'Rota para criar um novo serviço'
+      tags:
+        - Serviço
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServicoPostSchema'
+      responses:
+        '201':
+          description: 'Serviço criado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicoSchema'
+
+  /servicos/{id}:
+    parameters:
+      - $ref: '#/components/parameters/IdParameter'
+    get:
+      summary: 'Rota para obter um serviço pelo ID'
+      tags:
+        - Serviço
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'Serviço encontrado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicoSchema'
+
+    put:
+      summary: 'Rota para atualizar um serviço pelo ID'
+      tags:
+        - Serviço
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ServicoPutSchema'
+      responses:
+        '200':
+          description: 'Serviço atualizado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicoSchema'
+
+    delete:
+      summary: 'Rota para excluir um serviço pelo ID'
+      tags:
+        - Serviço
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'Serviço excluído'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicoSchema'
+
+  /servicos/{id}/update-status:
+    parameters:
+      - $ref: '#/components/parameters/IdParameter'
+    patch:
+      summary: 'Rota para atualizar o status de um serviço pelo ID'
+      tags:
+        - Serviço
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: ['pronto', 'andando']
+      responses:
+        '200':
+          description: 'Status do serviço atualizado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ServicoSchema'

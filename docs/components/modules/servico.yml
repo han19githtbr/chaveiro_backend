@@ -1,0 +1,61 @@
+components:
+  schemas:
+    ServicoSchema:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+        cliente:
+          type: string
+          required: true
+          example: 'Cliente A'
+        service:
+          type: string
+          required: true
+          example: 'Troca de fechadura'
+        pedidoDate:
+          type: string
+          required: true
+          example: '2023-09-15'
+        value:
+          type: string
+          example: '150.00'
+        status:
+          type: string
+          enum: [pronto, andando]
+          example: 'pronto'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2024-06-05T12:00:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2024-06-05T12:00:00Z'
+
+    ServicoPostSchema:
+      type: object
+      properties:
+        cliente:
+          type: string
+          required: true
+          example: 'Cliente A'
+        service:
+          type: string
+          required: true
+          example: 'Troca de fechadura'
+        pedidoDate:
+          type: string
+          required: true
+          example: '2023-09-15'
+        value:
+          type: string
+          example: '150.00'
+        status:
+          type: string
+          enum: [pronto, andando]
+          example: 'pronto'

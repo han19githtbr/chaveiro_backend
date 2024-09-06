@@ -1,0 +1,99 @@
+paths:
+  /registers:
+    get:
+      summary: 'Rota utilizada para obter todos os usuários'
+      tags:
+        - Gerencial - Cadastro
+        - User - Cadastro
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/SearchParameter'
+        - $ref: '#/components/parameters/PageParameter'
+        - $ref: '#/components/parameters/SizeParameter'
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RegisterSchema'
+
+    post:
+      summary: 'Rota utilizada para criar um novo usuário'
+      tags:
+        - Gerencial - Cadastro
+        - User - Cadastro
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterPostSchema'
+      responses:
+        '201':
+          description: 'Created'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterSchema'
+
+  /registers/{id}:
+    parameters:
+      - $ref: '#/components/parameters/IdParameter'
+    get:
+      summary: 'Rota utilizada para obter um usuário pelo ID'
+      tags:
+        - Gerencial - Cadastro
+        - User - Cadastro
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterSchema'
+
+    put:
+      summary: 'Rota utilizada para atualizar um usuário pelo ID'
+      description: >
+        ## - Não é necessário enviar todos os campos novamente. Envie apenas aqueles que deseja editar.
+      tags:
+        - Gerencial - Cadastro
+        - User - Cadastro
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/RegisterSchema'
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterSchema'
+
+    delete:
+      summary: 'Rota utilizada para excluir um usuário pelo ID'
+      tags:
+        - Gerencial - Cadastro
+        - User - Cadastro
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RegisterSchema'

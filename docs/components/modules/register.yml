@@ -1,0 +1,61 @@
+components:
+  schemas:
+    RegisterPostSchema:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/RegisterSchema'
+      properties:
+        password:
+          type: string
+          example: 'password123'
+
+    RegisterSchema:
+      type: object
+      properties:
+        id:
+          type: number
+          readOnly: true
+          example: 1
+        role:
+          type: string
+          enum: [user, admin]
+          example: 'user'
+        type:
+          type: string
+          readOnly: true
+          enum: [app, web]
+          example: 'app'
+        name:
+          type: string
+          example: 'John Doe'
+        cpf:
+          type: string
+          example: '12345678901'
+        phone:
+          type: string
+          example: '11987654321'
+        email:
+          type: string
+          example: 'john.doe@example.com'
+        status:
+          type: string
+          enum: [ativo, inativo, suspenso]
+          example: 'ativo'
+        imageUrl:
+          type: string
+          nullable: true
+          example: 'https://example.com/image.jpg'
+        birthDate:
+          type: string
+          format: date
+          example: '1990-01-01'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2024-06-05T12:00:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2024-06-05T12:00:00Z'

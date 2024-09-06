@@ -1,0 +1,133 @@
+// This is your Prisma schema file, learn more about it in the docs: https://pris.ly/d/prisma-schema
+// Attributes: https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#attributes
+// Attributes functions: https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#attribute-functions
+// Native type MySQL: https://www.prisma.io/docs/concepts/database-connectors/mysql#native-type-mappings
+// Relations: https://www.prisma.io/docs/concepts/components/prisma-schema/relations
+// Scalar types: https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#model-field-scalar-types
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Security {
+  id            Int       @id @default(autoincrement())
+  credential    String    @unique @db.VarChar(512)
+  code          String?   @db.VarChar(32)
+  codeExpiresIn DateTime? @db.DateTime(0)
+  validated     Boolean   @default(false)
+}
+
+model Permission {
+  id     Int         @id @default(autoincrement())
+  title  Permissions @unique
+  admins Admin[]
+}
+
+model Admin {
+  id            Int           @id @default(autoincrement())
+  role          AccountRole   @default(admin)
+  name          String        @db.VarChar(512)
+  email         String        @unique @db.VarChar(512)
+  password      String        @db.Text
+  status        AccountStatus
+  imageUrl      String?       @db.Text
+  code          String?       @db.VarChar(32)
+  codeExpiresIn DateTime?     @db.DateTime(0)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  permissions   Permission[]
+}
+
+model User {
+  id            Int                 @id @default(autoincrement())
+  role          AccountRole         @default(user)
+  name          String              @db.VarChar(512)
+  email         String              @unique @db.VarChar(512)
+  password      String              @db.Text
+  type          UserType            @default(app)
+  cpf           String              @unique @db.VarChar(11)
+  phone         String              @unique @db.VarChar(11)
+  birthDate     String              @db.VarChar(10)
+  status        AccountStatus
+  imageUrl      String?             @db.Text
+  code          String?             @db.VarChar(32)
+  codeExpiresIn DateTime?           @db.DateTime(0)
+  createdAt     DateTime            @default(now())
+  updatedAt     DateTime            @updatedAt
+}
+
+model Chaveiro {
+  id            Int                 @id @default(autoincrement())
+  name          String              @db.VarChar(512)
+  imageUrl      String?             @db.Text
+  phone         String              @db.VarChar(512)
+  endereco      String              @db.VarChar(512)
+  status        ChaveiroStatus
+}
+
+model Cliente {
+  id            Int                 @id @default(autoincrement())
+  name          String              @db.VarChar(512)
+  imageUrl      String?             @db.Text
+  phone         String              @db.VarChar(512)
+  endereco      String              @db.VarChar(512)
+  status        ClienteStatus
+}
+
+enum ClienteStatus {
+  servido
+  pendente
+}
+
+model Servico {
+  id            Int                 @id @default(autoincrement())
+  cliente       String              @db.VarChar(512)
+  imageUrl      String?             @db.Text
+  service       ServiceType
+  value         String              @db.VarChar(512)
+  status        ServiceStatus
+}
+
+enum Permissions {
+  configuracoes
+  chaveiros
+  servicos
+  desenvolvimento
+  dashboard
+}
+
+enum AccountRole {
+  admin
+  user
+}
+
+enum AccountStatus {
+  ativo
+  inativo
+  pendente
+}
+
+enum ChaveiroStatus {
+  disponivel
+  indisponivel
+}
+
+enum ServiceStatus {
+  pronto
+  andando
+}
+
+enum ServiceType {
+  copia
+  conserto
+}
+
+enum UserType {
+  app
+  web
+}

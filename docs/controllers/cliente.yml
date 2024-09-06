@@ -1,0 +1,116 @@
+paths:
+  /clientes:
+    get:
+      summary: 'Rota para obter todos os clientes'
+      tags:
+        - Cliente
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/PageParameter'
+        - $ref: '#/components/parameters/SizeParameter'
+        - $ref: '#/components/parameters/StatusParameter'
+      responses:
+        '200':
+          description: 'Lista de clientes'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClienteSchema'
+
+    post:
+      summary: 'Rota para criar um novo cliente'
+      tags:
+        - Cliente
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientePostSchema'
+      responses:
+        '201':
+          description: 'Cliente criado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClienteSchema'
+
+  /clientes/{id}:
+    parameters:
+      - $ref: '#/components/parameters/IdParameter'
+    get:
+      summary: 'Rota para obter um cliente pelo ID'
+      tags:
+        - Cliente
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'Cliente encontrado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClienteSchema'
+
+    put:
+      summary: 'Rota para atualizar um cliente pelo ID'
+      tags:
+        - Cliente
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClientePostSchema'
+      responses:
+        '200':
+          description: 'Cliente atualizado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClienteSchema'
+
+    delete:
+      summary: 'Rota para excluir um cliente pelo ID'
+      tags:
+        - Cliente
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'Cliente excluído'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClienteSchema'
+
+  /clientes/{id}/update-status:
+    patch:
+      summary: 'Rota para atualizar o status de um cliente pelo ID'
+      tags:
+        - Cliente
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/IdParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ClienteUpdateStatusSchema'
+      responses:
+        '200':
+          description: 'Status do cliente atualizado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ClienteSchema'
+
