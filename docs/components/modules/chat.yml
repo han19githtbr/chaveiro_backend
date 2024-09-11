@@ -1,0 +1,71 @@
+components:
+  schemas:
+    MessageSchema:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+        sender:
+          type: string
+          required: true
+          example: 'Usuário'
+        content:
+          type: string
+          required: true
+          example: 'Olá, gostaria de saber mais sobre o produto.'
+        userId:
+          type: integer
+          required: true
+          example: 123
+        userName:
+          type: string
+          required: true
+          example: 'João Silva'
+        userPhone:
+          type: string
+          required: true
+          example: '+551199999999'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2024-09-09T12:00:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2024-09-09T12:00:00Z'
+
+    MessagePostSchema:
+      type: object
+      properties:
+        sender:
+          type: string
+          required: true
+          example: 'Usuário'
+        content:
+          type: string
+          required: true
+          example: 'Olá, gostaria de saber mais sobre o produto.'
+        userId:
+          type: integer
+          required: true
+          example: 123
+        userName:
+          type: string
+          required: true
+          example: 'João Silva'
+        userPhone:
+          type: string
+          required: true
+          example: '+551199999999'
+
+    MessageUpdateSchema:
+      type: object
+      properties:
+        content:
+          type: string
+          required: true
+          example: 'Mensagem atualizada'

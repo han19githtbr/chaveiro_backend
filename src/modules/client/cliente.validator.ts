@@ -25,7 +25,6 @@ const updateStatusSchema = z.object({
 });
 
 
-
 class Validator {
   public async createOne(req: Request, res: Response, next: NextFunction) {
     const validation = CreateCliente.safeParse(req.body);

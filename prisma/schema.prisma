@@ -44,53 +44,84 @@ model Admin {
 }
 
 model User {
-  id            Int                 @id @default(autoincrement())
-  role          AccountRole         @default(user)
-  name          String              @db.VarChar(512)
-  email         String              @unique @db.VarChar(512)
-  password      String              @db.Text
-  type          UserType            @default(app)
-  cpf           String              @unique @db.VarChar(11)
-  phone         String              @unique @db.VarChar(11)
-  birthDate     String              @db.VarChar(10)
+  id            Int           @id @default(autoincrement())
+  role          AccountRole   @default(user)
+  name          String        @db.VarChar(512)
+  email         String        @unique @db.VarChar(512)
+  password      String        @db.Text
+  type          UserType      @default(app)
+  cpf           String        @unique @db.VarChar(11)
+  phone         String        @unique @db.VarChar(11)
+  birthDate     String        @db.VarChar(10)
   status        AccountStatus
-  imageUrl      String?             @db.Text
-  code          String?             @db.VarChar(32)
-  codeExpiresIn DateTime?           @db.DateTime(0)
-  createdAt     DateTime            @default(now())
-  updatedAt     DateTime            @updatedAt
+  imageUrl      String?       @db.Text
+  code          String?       @db.VarChar(32)
+  codeExpiresIn DateTime?     @db.DateTime(0)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
 }
 
 model Chaveiro {
-  id            Int                 @id @default(autoincrement())
-  name          String              @db.VarChar(512)
-  imageUrl      String?             @db.Text
-  phone         String              @db.VarChar(512)
-  endereco      String              @db.VarChar(512)
-  status        ChaveiroStatus
+  id       Int            @id @default(autoincrement())
+  name     String         @db.VarChar(512)
+  imageUrl String?        @db.Text
+  phone    String         @db.VarChar(512)
+  endereco String         @db.VarChar(512)
+  status   ChaveiroStatus
 }
 
 model Cliente {
-  id            Int                 @id @default(autoincrement())
-  name          String              @db.VarChar(512)
-  imageUrl      String?             @db.Text
-  phone         String              @db.VarChar(512)
-  endereco      String              @db.VarChar(512)
-  status        ClienteStatus
+  id       Int           @id @default(autoincrement())
+  name     String        @db.VarChar(512)
+  imageUrl String?       @db.Text
+  phone    String        @db.VarChar(512)
+  endereco String        @db.VarChar(512)
+  status   ClienteStatus
 }
 
 enum ClienteStatus {
   servido
   pendente
+  novo
 }
 
+
+model Notification {
+  id        Int      @id @default(autoincrement())
+  message   String
+  name      String   @default("")
+  endereco  String   @default("")
+  phone     String   @default("")
+  imageUrl  String   @default("")
+  service   String   @default("")
+  status    String   @default("novo")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Message {
+  id          Int      @id @default(autoincrement())
+  sender      String   // 'user' ou 'admin'
+  content     String
+  createdAt   DateTime @default(now())
+  userId      Int      // ID do usuário que envia a mensagem
+  userName    String   // Nome do usuário
+  userPhone   String   // Telefone do usuário
+}
+
+
 model Servico {
-  id            Int                 @id @default(autoincrement())
-  cliente       String              @db.VarChar(512)
-  imageUrl      String?             @db.Text
-  service       ServiceType
-  value         String              @db.VarChar(512)
-  status        ServiceStatus
+  id       Int           @id @default(autoincrement())
+  cliente  String        @db.VarChar(512)
+  imageUrl String?       @db.Text
+  service  ServiceType
+  value    String        @db.VarChar(512)
+  status   ServiceStatus
+}
+
+enum ServiceType {
+  copia
+  conserto
 }
 
 enum Permissions {
@@ -120,11 +151,6 @@ enum ChaveiroStatus {
 enum ServiceStatus {
   pronto
   andando
-}
-
-enum ServiceType {
-  copia
-  conserto
 }
 
 enum UserType {

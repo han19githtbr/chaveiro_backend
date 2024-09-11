@@ -1,0 +1,170 @@
+paths:
+  /notifications:
+    get:
+      summary: 'Rota para obter todas as notificações'
+      tags:
+        - Notification
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/PageParameter'
+        - $ref: '#/components/parameters/SizeParameter'
+      responses:
+        '200':
+          description: 'Lista de notificações'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/NotificationSchema'
+
+    post:
+      summary: 'Rota para criar uma nova notificação'
+      tags:
+        - Notification
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationPostSchema'
+      responses:
+        '201':
+          description: 'Notificação criada'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSchema'
+
+  /notifications/{id}:
+    parameters:
+      - $ref: '#/components/parameters/IdParameter'
+    get:
+      summary: 'Rota para obter uma notificação pelo ID'
+      tags:
+        - Notification
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'Notificação encontrada'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSchema'
+
+    put:
+      summary: 'Rota para atualizar uma notificação pelo ID'
+      tags:
+        - Notification
+      security:
+        - BearerAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationUpdateSchema'
+      responses:
+        '200':
+          description: 'Notificação atualizada'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSchema'
+
+    delete:
+      summary: 'Rota para excluir uma notificação pelo ID'
+      tags:
+        - Notification
+      security:
+        - BearerAuth: []
+      responses:
+        '200':
+          description: 'Notificação excluída com sucesso'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Notificação excluída com sucesso!'
+        '404':
+          description: 'Notificação não encontrada'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Notificação não encontrada'
+
+components:
+  schemas:
+    NotificationSchema:
+      type: object
+      properties:
+        id:
+          type: integer
+          readOnly: true
+          example: 1
+        message:
+          type: string
+          required: true
+          example: 'Nova notificação'
+        status:
+          type: string
+          enum:
+            - novo
+            - pendente
+            - enviado
+          required: true
+          example: 'novo'
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2024-06-05T12:00:00Z'
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+          example: '2024-06-05T12:00:00Z'
+
+    NotificationPostSchema:
+      type: object
+      properties:
+        message:
+          type: string
+          required: true
+          example: 'Nova notificação'
+        status:
+          type: string
+          enum:
+            - novo
+            - pendente
+            - enviado
+          required: true
+          example: 'novo'
+
+    NotificationUpdateSchema:
+      type: object
+      properties:
+        message:
+          type: string
+          required: true
+          example: 'Notificação atualizada'
+        status:
+          type: string
+          enum:
+            - novo
+            - pendente
+            - enviado
+          required: true
+          example: 'pendente'
+

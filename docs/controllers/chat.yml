@@ -1,0 +1,80 @@
+paths:
+  /messages:
+    get:
+      summary: 'Rota para obter todas as mensagens'
+      tags:
+        - Message
+      responses:
+        '200':
+          description: 'Lista de mensagens'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MessageSchema'
+
+    post:
+      summary: 'Rota para criar uma nova mensagem'
+      tags:
+        - Message
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MessagePostSchema'
+      responses:
+        '201':
+          description: 'Mensagem criada'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageSchema'
+
+  /messages/{id}:
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+        description: 'ID da mensagem'
+
+    get:
+      summary: 'Rota para obter uma mensagem pelo ID'
+      tags:
+        - Message
+      responses:
+        '200':
+          description: 'Mensagem encontrada'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MessageSchema'
+
+    delete:
+      summary: 'Rota para excluir uma mensagem pelo ID'
+      tags:
+        - Message
+      responses:
+        '200':
+          description: 'Mensagem excluída com sucesso'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Mensagem excluída com sucesso!'
+        '404':
+          description: 'Mensagem não encontrada'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Mensagem não encontrada'

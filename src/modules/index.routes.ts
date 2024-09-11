@@ -10,6 +10,8 @@ import ChaveiroRoutes from './chaveiro/chaveiro.routes';
 import RegisterRoutes from './register/register.routes';
 import UploadFileRoutes from './upload-file/upload-file.routes';
 import ClienteRoutes from './client/cliente.routes';
+import NotificationsRoutes from './notifications/notification.routes';
+import MessageRoutes from './chat/message.routes';
 
 
 const router = Router();
@@ -21,7 +23,10 @@ router.use('/contact', ContactRoutes);
 router.use('/servico', ServicosRoutes);
 router.use('/chaveiro', ChaveiroRoutes);
 router.use('/clientes', ClienteRoutes);
+router.use('/notifications', NotificationsRoutes);
 router.use('/registers', RegisterRoutes);
 router.use('/upload-file', UploadFileRoutes);
+router.use('/messages', MessageRoutes);
+
 
 export default router;

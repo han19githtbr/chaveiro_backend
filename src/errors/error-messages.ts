@@ -10,6 +10,7 @@ export default {
   EMAIL_NOT_VALIDATED: 'Para continuar, é necessário validar o email.',
   INVALID_CREDENTIALS: 'Credenciais incorretas.',
 
+  NOTIFICATION_NOT_FOUND: 'Notificação não encontrada',
   SERVICO_NOT_FOUND: 'Serviço não encontrado na base de dados',
   CLIENTE_NOT_FOUND: 'Cliente não encontrado na base de dados',
   CHAVEIRO_NOT_FOUND: 'Chaveiro não encontrado na base de dados',

@@ -80,7 +80,36 @@ CREATE TABLE `Cliente` (
     `imageUrl` TEXT NULL,
     `phone` VARCHAR(512) NOT NULL,
     `endereco` VARCHAR(512) NOT NULL,
-    `status` ENUM('servido', 'pendente') NOT NULL,
+    `status` ENUM('servido', 'pendente', 'novo') NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Notification` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `message` VARCHAR(191) NOT NULL,
+    `name` VARCHAR(191) NOT NULL DEFAULT '',
+    `endereco` VARCHAR(191) NOT NULL DEFAULT '',
+    `phone` VARCHAR(191) NOT NULL DEFAULT '',
+    `imageUrl` VARCHAR(191) NOT NULL DEFAULT '',
+    `service` VARCHAR(191) NOT NULL DEFAULT '',
+    `status` VARCHAR(191) NOT NULL DEFAULT 'novo',
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+
+-- CreateTable
+CREATE TABLE `Message` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `sender` VARCHAR(191) NOT NULL,
+    `content` VARCHAR(191) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `userId` INTEGER NOT NULL,
+    `userName` VARCHAR(191) NOT NULL,
+    `userPhone` VARCHAR(191) NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
