@@ -1,6 +1,5 @@
 import Repository from './chaveiro.repository';
 // eslint-disable-next-line linebreak-style
-
 import AppException from '@errors/app-exception';
 import ErrorMessages from '@errors/error-messages';
 import PaginationHelper from '@helpers/pagination.helper';
@@ -50,6 +49,7 @@ class Service {
 
   public async createOne(data: CreateChaveiroDto) {
     const convertedData = this.convertToChaveiroCreateInput(data);
+    delete (convertedData as any).id;
     return await Repository.createOne(convertedData);
   }
 
@@ -63,7 +63,7 @@ class Service {
   private convertToChaveiroCreateInput(data: CreateChaveiroDto): ChaveiroCreateInput {
     return {
       ...data,
-      status: data.status ? this.convertToChaveiroStatus(data.status) : ChaveiroStatus.disponivel,
+      status: data.status ? this.convertToChaveiroStatus(data.status) : ChaveiroStatus.ativo,
     };
   }
 

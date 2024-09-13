@@ -55,3 +55,11 @@ components:
           type: string
           enum: [ativo, inativo]
           example: 'ativo'
+
+    ChaveiroUpdateStatusSchema:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: [ativo, inativo]
+          example: 'ativo'

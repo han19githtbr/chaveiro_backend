@@ -104,67 +104,26 @@ paths:
                     type: string
                     example: 'Notificação não encontrada'
 
-components:
-  schemas:
-    NotificationSchema:
-      type: object
-      properties:
-        id:
-          type: integer
-          readOnly: true
-          example: 1
-        message:
-          type: string
-          required: true
-          example: 'Nova notificação'
-        status:
-          type: string
-          enum:
-            - novo
-            - pendente
-            - enviado
-          required: true
-          example: 'novo'
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: '2024-06-05T12:00:00Z'
-        updatedAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: '2024-06-05T12:00:00Z'
-
-    NotificationPostSchema:
-      type: object
-      properties:
-        message:
-          type: string
-          required: true
-          example: 'Nova notificação'
-        status:
-          type: string
-          enum:
-            - novo
-            - pendente
-            - enviado
-          required: true
-          example: 'novo'
-
-    NotificationUpdateSchema:
-      type: object
-      properties:
-        message:
-          type: string
-          required: true
-          example: 'Notificação atualizada'
-        status:
-          type: string
-          enum:
-            - novo
-            - pendente
-            - enviado
-          required: true
-          example: 'pendente'
+/notifications/{id}/update-status:
+    patch:
+      summary: 'Rota para atualizar o status de uma notificação pelo ID'
+      tags:
+        - Notification
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/IdParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NotificationUpdateStatusSchema'
+      responses:
+        '200':
+          description: 'Status da notificação atualizada'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/NotificationSchema'
 

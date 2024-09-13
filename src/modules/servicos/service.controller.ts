@@ -2,6 +2,23 @@
 import Service from './servicos.service';
 import { Request, Response } from 'express';
 import { RequestQueryDto } from '@dtos/request-query.dto';
+//import multer from 'multer';
+//import path from 'path';
+
+
+
+/*const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, 'uploads/');
+  },
+  filename: (req, file, cb) => {
+    cb(null, Date.now() + path.extname(file.originalname));
+  },
+});
+
+
+const upload = multer({ storage: storage });*/
+
 
 class Controller {
   public async findAll(req: Request, res: Response) {
@@ -17,6 +34,23 @@ class Controller {
     const result = await Service.findOne(+req.params.id);
     res.status(200).json(result);
   }
+
+  /*public createOne = [upload.single('image'), async(req: Request, res: Response) => {
+    const { body } = req;
+    const imageUrl = req.file ? `../../utils/uploads/${req.file.filename}` : '';
+
+    const result = await Service.createOne({ ...body, imageUrl });
+    res.status(201).json(result);
+  }];
+
+
+  public updateOne = [upload.single('image'), async(req: Request, res: Response) => {
+    const { body } = req;
+    const imageUrl = req.file ? `../../utils/uploads/${req.file.filename}` : ''; // Caminho da imagem
+
+    const result = await Service.updateOne(+req.params.id, { ...body, imageUrl }); // Inclui o caminho da imagem no corpo da requisição
+    res.status(200).json(result);
+  }];*/
 
   public async createOne(req: Request, res: Response) {
     const result = await Service.createOne(req.body);

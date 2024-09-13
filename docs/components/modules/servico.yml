@@ -15,10 +15,6 @@ components:
           type: string
           required: true
           example: 'Troca de fechadura'
-        pedidoDate:
-          type: string
-          required: true
-          example: '2023-09-15'
         value:
           type: string
           example: '150.00'
@@ -48,10 +44,6 @@ components:
           type: string
           required: true
           example: 'Troca de fechadura'
-        pedidoDate:
-          type: string
-          required: true
-          example: '2023-09-15'
         value:
           type: string
           example: '150.00'

@@ -68,7 +68,7 @@ CREATE TABLE `Chaveiro` (
     `imageUrl` TEXT NULL,
     `phone` VARCHAR(512) NOT NULL,
     `endereco` VARCHAR(512) NOT NULL,
-    `status` ENUM('disponivel', 'indisponivel') NOT NULL,
+    `status` ENUM('ativo', 'inativo') NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

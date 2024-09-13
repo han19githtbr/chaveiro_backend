@@ -45,8 +45,12 @@ class Controller {
   }
 
   public async updateStatus(req: Request, res: Response) {
-    const result = await Service.updateStatus(+req.params.id, req.body.status);
-    res.status(200).json(result);
+    try {
+      const result = await Service.updateStatus(+req.params.id, req.body.status);
+      res.status(200).json(result);
+    } catch (error) {
+      res.status(500).json({ message: 'Erro ao atualizar o status do cliente', error });
+    }
   }
 
   public async getClientCount(req: Request, res: Response) {

@@ -54,7 +54,7 @@ class Validator {
     next();
   }
 
-  // Novo método de validação para atualizar o status
+  // Verificação de validação para atualização de status
   public async updateStatus(req: Request, res: Response, next: NextFunction) {
     const validation = updateStatusSchema.safeParse(req.body);
     if (!validation.success) {

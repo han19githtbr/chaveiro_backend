@@ -144,8 +144,8 @@ enum AccountStatus {
 }
 
 enum ChaveiroStatus {
-  disponivel
-  indisponivel
+  ativo
+  inativo
 }
 
 enum ServiceStatus {

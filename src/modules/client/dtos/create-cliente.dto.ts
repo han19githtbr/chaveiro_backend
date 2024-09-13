@@ -1,10 +1,11 @@
 /* eslint-disable indent */
+import { ClienteStatus } from '@prisma/client';
 import { z } from 'zod';
 
 export type CreateClienteDto = z.output<typeof CreateCliente>;
 export const CreateCliente = z.object({
   name: z.string().trim().min(1),
-  status: z.string().trim().min(1),
+  status: z.nativeEnum(ClienteStatus).optional(),
   phone: z
     .string()
     .trim()

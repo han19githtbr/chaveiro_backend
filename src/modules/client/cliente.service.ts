@@ -65,14 +65,14 @@ class Service {
   private convertToClienteCreateInput(data: CreateClienteDto): ClienteCreateInput {
     return {
       ...data,
-      status: this.convertToClienteStatus(data.status),
+      status: data.status ? this.convertToClienteStatus(data.status) : ClienteStatus.servido,
     };
   }
 
   private convertToClienteUpdateInput(data: UpdateClienteDto): ClienteUpdateInput {
     return {
       ...data,
-      status: this.convertToClienteStatus(data.status),
+      status: data.status ? this.convertToClienteStatus(data.status) : undefined,
     };
   }
 
@@ -86,6 +86,9 @@ class Service {
 
   public async updateStatus(id: number, status: ClienteStatus) {
     const cliente = await this.findOne(id);
+    if (!cliente) {
+      throw new Error('Cliente não encontrado');
+    }
     return await Repository.updateStatus(cliente.id, status);
   }
 

@@ -12,19 +12,15 @@ import { UpdateServicoDto } from './dtos/update-service.dto';
 
 interface ServicoCreateInput {
   cliente: string;
-  //service: string;
   service: ServiceType;
   value: string;
-  pedidoDate: string;
   status: ServiceStatus;
 }
 
 interface ServicoUpdateInput {
   cliente?: string;
   service: ServiceType;
-  //service?: string;
   value?: string;
-  pedidoDate?: string;
   status?: ServiceStatus;
 }
 
@@ -62,12 +58,11 @@ class Service {
     return await Repository.updateOne(servico.id, convertedData);
   }
 
-
   private convertToServicoCreateInput(data: CreateServicoDto): ServicoCreateInput {
     return {
       ...data,
       service: this.convertToServiceType(data.service),
-      status: this.convertToServicoStatus(data.status),
+      status: data.status ? this.convertToServicoStatus(data.status) : ServiceStatus.pronto,
     };
   }
 
@@ -75,7 +70,7 @@ class Service {
     return {
       ...data,
       service: this.convertToServiceType(data.service),
-      status: this.convertToServicoStatus(data.status),
+      status: data.status ? this.convertToServicoStatus(data.status) : undefined,
     };
   }
 

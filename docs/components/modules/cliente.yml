@@ -63,4 +63,4 @@ components:
           type: string
           enum: [servido, pendente]
           required: true
-          example: 'pendente'
+          example: 'servido'

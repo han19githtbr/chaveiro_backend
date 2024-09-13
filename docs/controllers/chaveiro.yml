@@ -90,3 +90,26 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ChaveiroSchema'
+
+  /chaveiros/{id}/update-status:
+    patch:
+      summary: 'Rota para atualizar o status de um chaveiro pelo ID'
+      tags:
+        - Chaveiro
+      security:
+        - BearerAuth: []
+      parameters:
+        - $ref: '#/components/parameters/IdParameter'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ChaveiroUpdateStatusSchema'
+      responses:
+        '200':
+          description: 'Status do chaveiro atualizado'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ChaveiroSchema'

@@ -1,5 +1,6 @@
 /* eslint-disable indent */
 /* eslint-disable quotes */
+import { ServiceStatus } from '@prisma/client';
 import { z } from 'zod';
 
 // eslint-disable-next-line linebreak-style
@@ -20,12 +21,7 @@ export const CreateServico = z.object({
     }),*/
 
   // Validação personalizada para 'status'
-  status: z
-    .string()
-    .trim()
-    .refine((value) => ['pendente', 'pronto', 'cancelado'].includes(value), {
-      message: "Status inválido",
-    }),
+  status: z.nativeEnum(ServiceStatus).optional(),
 
   // Validação personalizada para 'value'
   value: z
@@ -33,14 +29,6 @@ export const CreateServico = z.object({
     .trim()
     .refine((value) => !isNaN(parseFloat(value)) && parseFloat(value) > 0, {
       message: "Valor deve ser um número positivo",
-    }),
-
-  // Validação personalizada para 'pedidoDate'
-  pedidoDate: z
-    .string()
-    .trim()
-    .refine((value) => !isNaN(Date.parse(value)), {
-      message: "Data de pedido inválida",
     }),
 
   imageUrl: z.string().trim().url().optional(),

@@ -92,8 +92,13 @@ class Repository {
   }
 
   public updateStatus(id: number, status: ClienteStatus) {
-    return this.repository.update({ where: { id }, data: { status }, select: ClienteDto });
+    return this.repository.update({
+      where: { id },
+      data: { status },
+      select: ClienteDto, // Certifique-se de que ClienteDto está configurado corretamente
+    });
   }
+
 
   public count() {
     return this.repository.count();

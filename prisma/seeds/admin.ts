@@ -6,7 +6,7 @@ const admin: Prisma.AdminCreateInput = {
   role: AccountRole.admin,
   name: 'Handy Milliance',
   email: 'milliance23@gmail.com',
-  imageUrl: 'http://4.bp.blogspot.com/-1cFylbwcTtE/UqMkUV_5-yI/AAAAAAAAF8w/OE8QEo8B1MY/s1600/PAISAGENS.jpg',
+  imageUrl: 'https://i.imgur.com/EhCWSZC.jpg',
   password: PasswordHelper.hash('123456789'),
   status: AccountStatus.ativo,
 };
