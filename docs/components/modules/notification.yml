@@ -13,7 +13,7 @@ components:
           example: 'Nova notificação'
         status:
           type: string
-          enum: [novo, pendente, servido]
+          enum: ['novo', 'ativo', 'inativo']
           required: true
           example: 'novo'
         createdAt:
@@ -36,7 +36,7 @@ components:
           example: 'Nova notificação'
         status:
           type: string
-          enum: [novo, pendente, servido]
+          enum: ['novo', 'ativo', 'inativo']
           required: true
           example: 'novo'
 
@@ -49,7 +49,6 @@ components:
           example: 'Notificação atualizada'
         status:
           type: string
-          enum: [novo, pendente, servido]
+          enum: ['novo', 'ativo', 'inativo']
           required: true
           example: 'novo'
-

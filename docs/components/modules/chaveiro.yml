@@ -22,7 +22,7 @@ components:
           example: 'Rua A, Nº 123, Bairro B'
         status:
           type: string
-          enum: [ativo, inativo]
+          enum: ['ativo', 'inativo']
           example: 'ativo'
         createdAt:
           type: string
@@ -53,7 +53,7 @@ components:
           example: 'Rua A, Nº 123, Bairro B'
         status:
           type: string
-          enum: [ativo, inativo]
+          enum: ['ativo', 'inativo']
           example: 'ativo'
 
     ChaveiroUpdateStatusSchema:
@@ -61,5 +61,5 @@ components:
       properties:
         status:
           type: string
-          enum: [ativo, inativo]
+          enum: ['ativo', 'inativo']
           example: 'ativo'

@@ -3,7 +3,7 @@ paths:
     get:
       summary: 'Rota para obter todos os serviços'
       tags:
-        - Serviço
+        - Gerencial - Serviço
       security:
         - BearerAuth: []
       parameters:
@@ -23,7 +23,7 @@ paths:
     post:
       summary: 'Rota para criar um novo serviço'
       tags:
-        - Serviço
+        - Gerencial - Serviço
       security:
         - BearerAuth: []
       requestBody:
@@ -46,7 +46,7 @@ paths:
     get:
       summary: 'Rota para obter um serviço pelo ID'
       tags:
-        - Serviço
+        - Gerencial - Serviço
       security:
         - BearerAuth: []
       responses:
@@ -60,7 +60,7 @@ paths:
     put:
       summary: 'Rota para atualizar um serviço pelo ID'
       tags:
-        - Serviço
+        - Gerencial - Serviço
       security:
         - BearerAuth: []
       requestBody:
@@ -80,7 +80,7 @@ paths:
     delete:
       summary: 'Rota para excluir um serviço pelo ID'
       tags:
-        - Serviço
+        - Gerencial - Serviço
       security:
         - BearerAuth: []
       responses:
@@ -97,7 +97,7 @@ paths:
     patch:
       summary: 'Rota para atualizar o status de um serviço pelo ID'
       tags:
-        - Serviço
+        - Gerencial - Serviço
       security:
         - BearerAuth: []
       requestBody:
@@ -109,7 +109,7 @@ paths:
               properties:
                 status:
                   type: string
-                  enum: ['pronto', 'andando']
+                  enum: [ativo, inativo]
       responses:
         '200':
           description: 'Status do serviço atualizado'

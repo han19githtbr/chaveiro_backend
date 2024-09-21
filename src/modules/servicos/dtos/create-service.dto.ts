@@ -32,6 +32,6 @@ export const CreateServico = z.object({
     }),
 
   imageUrl: z.string().trim().url().optional(),
-
+  //imageUrl: z.string().max(1000),
 });
 

@@ -3,7 +3,7 @@ paths:
     get:
       summary: 'Rota para obter todas as notificações'
       tags:
-        - Notification
+        - Gerencial - Notification
       security:
         - BearerAuth: []
       parameters:
@@ -22,7 +22,7 @@ paths:
     post:
       summary: 'Rota para criar uma nova notificação'
       tags:
-        - Notification
+        - Gerencial - Notification
       security:
         - BearerAuth: []
       requestBody:
@@ -45,7 +45,7 @@ paths:
     get:
       summary: 'Rota para obter uma notificação pelo ID'
       tags:
-        - Notification
+        - Gerencial - Notification
       security:
         - BearerAuth: []
       responses:
@@ -59,7 +59,7 @@ paths:
     put:
       summary: 'Rota para atualizar uma notificação pelo ID'
       tags:
-        - Notification
+        - Gerencial - Notification
       security:
         - BearerAuth: []
       requestBody:
@@ -79,7 +79,7 @@ paths:
     delete:
       summary: 'Rota para excluir uma notificação pelo ID'
       tags:
-        - Notification
+        - Gerencial - Notification
       security:
         - BearerAuth: []
       responses:
@@ -105,20 +105,24 @@ paths:
                     example: 'Notificação não encontrada'
 
 /notifications/{id}/update-status:
+    parameters:
+      - $ref: '#/components/parameters/IdParameter'
     patch:
       summary: 'Rota para atualizar o status de uma notificação pelo ID'
       tags:
-        - Notification
+        - Gerencial - Notification
       security:
         - BearerAuth: []
-      parameters:
-        - $ref: '#/components/parameters/IdParameter'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/NotificationUpdateStatusSchema'
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [novo, ativo, inativo]
       responses:
         '200':
           description: 'Status da notificação atualizada'

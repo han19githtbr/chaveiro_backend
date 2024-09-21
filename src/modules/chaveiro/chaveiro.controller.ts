@@ -1,5 +1,6 @@
 // eslint-disable-next-line linebreak-style
 import Service from './chaveiro.service';
+// eslint-disable-next-line linebreak-style
 import { Request, Response } from 'express';
 import { RequestQueryDto } from '@dtos/request-query.dto';
 

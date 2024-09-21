@@ -1,3 +1,4 @@
+// eslint-disable-next-line linebreak-style
 import { Router } from 'express';
 // eslint-disable-next-line linebreak-style
 

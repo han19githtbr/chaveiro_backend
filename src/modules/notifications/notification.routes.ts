@@ -1,3 +1,4 @@
+// eslint-disable-next-line linebreak-style
 import { Router } from 'express';
 import NotificationController from './notification.controller';
 import Auth from '@middlewares/auth.middleware';

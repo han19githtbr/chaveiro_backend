@@ -6,28 +6,28 @@ const services: Prisma.ServicoCreateInput[] = [
     value: '20',
     imageUrl: 'https://img.lovepik.com/element/40048/2624.png_1200.png',
     service: ServiceType.copia,
-    status: ServiceStatus.pronto,
+    status: ServiceStatus.ativo,
   },
   {
     cliente: 'André',
     value: '20',
     imageUrl: 'https://static.vecteezy.com/system/resources/previews/019/907/697/original/key-graphic-clipart-design-free-png.png',
     service: ServiceType.copia,
-    status: ServiceStatus.andando,
+    status: ServiceStatus.ativo,
   },
   {
     cliente: 'Mateus',
     value: '30',
     imageUrl: 'https://wallpapercave.com/wp/wp4140261.jpg',
     service: ServiceType.conserto,
-    status: ServiceStatus.pronto,
+    status: ServiceStatus.ativo,
   },
   {
     cliente: 'Tiago',
     value: '20',
     imageUrl: 'https://www.goodfreephotos.com/albums/other-photos/keys.jpg',
     service: ServiceType.copia,
-    status: ServiceStatus.andando,
+    status: ServiceStatus.ativo,
   },
 ];
 

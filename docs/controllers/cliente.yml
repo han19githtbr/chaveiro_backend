@@ -3,7 +3,7 @@ paths:
     get:
       summary: 'Rota para obter todos os clientes'
       tags:
-        - Cliente
+        - Gerencial - Cliente
       security:
         - BearerAuth: []
       parameters:
@@ -23,7 +23,7 @@ paths:
     post:
       summary: 'Rota para criar um novo cliente'
       tags:
-        - Cliente
+        - Gerencial - Cliente
       security:
         - BearerAuth: []
       requestBody:
@@ -46,7 +46,7 @@ paths:
     get:
       summary: 'Rota para obter um cliente pelo ID'
       tags:
-        - Cliente
+        - Gerencial - Cliente
       security:
         - BearerAuth: []
       responses:
@@ -60,7 +60,7 @@ paths:
     put:
       summary: 'Rota para atualizar um cliente pelo ID'
       tags:
-        - Cliente
+        - Gerencial - Cliente
       security:
         - BearerAuth: []
       requestBody:
@@ -80,7 +80,7 @@ paths:
     delete:
       summary: 'Rota para excluir um cliente pelo ID'
       tags:
-        - Cliente
+        - Gerencial - Cliente
       security:
         - BearerAuth: []
       responses:
@@ -92,20 +92,24 @@ paths:
                 $ref: '#/components/schemas/ClienteSchema'
 
   /clientes/{id}/update-status:
+    parameters:
+      - $ref: '#/components/parameters/IdParameter'
     patch:
       summary: 'Rota para atualizar o status de um cliente pelo ID'
       tags:
-        - Cliente
+        - Gerencial - Cliente
       security:
         - BearerAuth: []
-      parameters:
-        - $ref: '#/components/parameters/IdParameter'
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/ClienteUpdateStatusSchema'
+              type: object
+              properties:
+                status:
+                  type: string
+                  enum: [ativo, inativo]
       responses:
         '200':
           description: 'Status do cliente atualizado'

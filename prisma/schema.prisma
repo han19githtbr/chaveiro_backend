@@ -64,27 +64,34 @@ model User {
 model Chaveiro {
   id       Int            @id @default(autoincrement())
   name     String         @db.VarChar(512)
-  imageUrl String?        @db.Text
+  //imageUrl String?        @db.Text
+  imageUrl String?        @db.VarChar(1000)
   phone    String         @db.VarChar(512)
   endereco String         @db.VarChar(512)
   status   ChaveiroStatus
 }
 
+enum ChaveiroStatus {
+  ativo
+  inativo
+}
+
 model Cliente {
   id       Int           @id @default(autoincrement())
   name     String        @db.VarChar(512)
-  imageUrl String?       @db.Text
+  //imageUrl String?       @db.Text
+  imageUrl String?       @db.VarChar(1000)
   phone    String        @db.VarChar(512)
   endereco String        @db.VarChar(512)
   status   ClienteStatus
 }
 
 enum ClienteStatus {
-  servido
+  ativo
+  inativo
   pendente
   novo
 }
-
 
 model Notification {
   id        Int      @id @default(autoincrement())
@@ -92,11 +99,20 @@ model Notification {
   name      String   @default("")
   endereco  String   @default("")
   phone     String   @default("")
-  imageUrl  String   @default("")
+  imageUrl  String   @db.VarChar(1000)
+  //imageUrl  String   @default("")
   service   String   @default("")
-  status    String   @default("novo")
+  //status    String   @default("novo")
+  status    NotificationStatus @default(novo)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+enum NotificationStatus {
+  novo
+  pendente
+  ativo
+  inativo
 }
 
 model Message {
@@ -113,11 +129,19 @@ model Message {
 model Servico {
   id       Int           @id @default(autoincrement())
   cliente  String        @db.VarChar(512)
-  imageUrl String?       @db.Text
+  imageUrl String?       @db.VarChar(1000)
+  //imageUrl String?       @db.Text
   service  ServiceType
   value    String        @db.VarChar(512)
   status   ServiceStatus
 }
+
+
+enum ServiceStatus {
+  ativo
+  inativo
+}
+
 
 enum ServiceType {
   copia
@@ -141,16 +165,6 @@ enum AccountStatus {
   ativo
   inativo
   pendente
-}
-
-enum ChaveiroStatus {
-  ativo
-  inativo
-}
-
-enum ServiceStatus {
-  pronto
-  andando
 }
 
 enum UserType {

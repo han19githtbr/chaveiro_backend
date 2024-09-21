@@ -1,5 +1,10 @@
 import { z } from 'zod';
 import { CreateCliente } from './create-cliente.dto';
+import { ClienteStatus } from '@prisma/client';
 
 export type UpdateClienteDto = z.output<typeof UpdateCliente>;
 export const UpdateCliente = CreateCliente;
+
+export const UpdateStatus = z.object({
+  status: z.enum([ClienteStatus.ativo, ClienteStatus.inativo, ClienteStatus.pendente]),
+});

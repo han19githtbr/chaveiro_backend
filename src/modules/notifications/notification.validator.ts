@@ -11,7 +11,8 @@ const createNotificationSchema = z.object({
   endereco: z.string().min(1, 'Endereço é obrigatório'),
   service: z.string().min(1, 'Serviço é obrigatório'),
   phone: z.string().min(1, 'Telefone é obrigatório'),
-  imageUrl: z.string().url('Foto deve ser uma URL válida'),
+  imageUrl: z.string().max(1000),
+  //imageUrl: z.string().url('Foto deve ser uma URL válida'),
   status: z.enum(['novo', 'pendente', 'enviado']),
 });
 

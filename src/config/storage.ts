@@ -16,8 +16,9 @@ const storageTypes = {
     filename: (req: Request, file: any, callback: any) => {
       const fileHash = crypto.randomBytes(16).toString('hex');
       file.key = `${fileHash}-${file.originalname}`;
-      file.location = `${process.env.APP_URL}/files/${file.key}`;
-      return callback(null, file.key, file.location);
+      file.location = `${process.env.APP_URL}/public/${file.key}`;
+      //return callback(null, file.key, file.location);
+      return callback(null, file.key);
     },
   }),
   s3: multerS3({

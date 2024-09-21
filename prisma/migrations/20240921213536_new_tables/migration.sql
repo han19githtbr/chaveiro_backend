@@ -80,7 +80,7 @@ CREATE TABLE `Cliente` (
     `imageUrl` TEXT NULL,
     `phone` VARCHAR(512) NOT NULL,
     `endereco` VARCHAR(512) NOT NULL,
-    `status` ENUM('servido', 'pendente', 'novo') NOT NULL,
+    `status` ENUM('ativo', 'inativo', 'pendente', 'novo') NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
@@ -94,7 +94,7 @@ CREATE TABLE `Notification` (
     `phone` VARCHAR(191) NOT NULL DEFAULT '',
     `imageUrl` VARCHAR(191) NOT NULL DEFAULT '',
     `service` VARCHAR(191) NOT NULL DEFAULT '',
-    `status` VARCHAR(191) NOT NULL DEFAULT 'novo',
+    `status` ENUM('novo', 'pendente', 'ativo', 'inativo') NOT NULL DEFAULT 'novo',
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
@@ -121,7 +121,7 @@ CREATE TABLE `Servico` (
     `imageUrl` TEXT NULL,
     `service` ENUM('copia', 'conserto') NOT NULL,
     `value` VARCHAR(512) NOT NULL,
-    `status` ENUM('pronto', 'andando') NOT NULL,
+    `status` ENUM('ativo', 'inativo') NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;

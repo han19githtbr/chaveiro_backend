@@ -65,7 +65,7 @@ class Service {
   private convertToClienteCreateInput(data: CreateClienteDto): ClienteCreateInput {
     return {
       ...data,
-      status: data.status ? this.convertToClienteStatus(data.status) : ClienteStatus.servido,
+      status: data.status ? this.convertToClienteStatus(data.status) : ClienteStatus.ativo,
     };
   }
 
@@ -119,7 +119,7 @@ class Service {
       phone: `9${Math.floor(100000000 + Math.random() * 900000000)}`,
       imageUrl: 'https://images4.alphacoders.com/115/thumb-1920-115716.jpg',
       endereco: 'Endereço Aleatório, 123',
-      status: Math.random() < 0.5 ? ClienteStatus.pendente : ClienteStatus.servido,
+      status: Math.random() < 0.5 ? ClienteStatus.inativo : ClienteStatus.ativo,
     };
 
     try {

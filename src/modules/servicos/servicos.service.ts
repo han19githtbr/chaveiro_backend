@@ -15,6 +15,7 @@ interface ServicoCreateInput {
   service: ServiceType;
   value: string;
   status: ServiceStatus;
+  imageUrl?: string;
 }
 
 interface ServicoUpdateInput {
@@ -22,6 +23,7 @@ interface ServicoUpdateInput {
   service: ServiceType;
   value?: string;
   status?: ServiceStatus;
+  imageUrl?: string;
 }
 
 
@@ -62,7 +64,7 @@ class Service {
     return {
       ...data,
       service: this.convertToServiceType(data.service),
-      status: data.status ? this.convertToServicoStatus(data.status) : ServiceStatus.pronto,
+      status: data.status ? this.convertToServicoStatus(data.status) : ServiceStatus.ativo,
     };
   }
 
@@ -70,7 +72,7 @@ class Service {
     return {
       ...data,
       service: this.convertToServiceType(data.service),
-      status: data.status ? this.convertToServicoStatus(data.status) : undefined,
+      status: data.status ? this.convertToServicoStatus(data.status) : ServiceStatus.ativo,
     };
   }
 

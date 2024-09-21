@@ -3,7 +3,7 @@ import NotificationService from './notification.service';
 import { Request, Response } from 'express';
 import { CreateNotificationDto } from './dtos/create-notification.dto';
 import { z } from 'zod';
-import Service from './notification.service';
+//import Service from './notification.service';
 
 
 class NotificationController {
@@ -117,8 +117,15 @@ class NotificationController {
 
 
   public async updateStatus(req: Request, res: Response) {
-    const result = await Service.updateStatus(+req.params.id, req.body.status);
-    res.status(200).json(result);
+    const { id } = req.params;
+    const { status } = req.body;
+
+    try {
+      const updatedNotification = await NotificationService.updateStatus(+id, status);
+      res.status(200).json(updatedNotification);
+    } catch (error) {
+      res.status(500).json({ error: 'Erro ao atualizar o status da notificação' });
+    }
   }
 
 }

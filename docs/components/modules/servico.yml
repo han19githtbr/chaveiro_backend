@@ -16,12 +16,12 @@ components:
           required: true
           example: 'Troca de fechadura'
         value:
-          type: string
-          example: '150.00'
+          type: number
+          example: 150.00
         status:
           type: string
-          enum: [pronto, andando]
-          example: 'pronto'
+          enum: ['ativo', 'inativo']
+          example: 'ativo'
         createdAt:
           type: string
           format: date-time
@@ -45,9 +45,18 @@ components:
           required: true
           example: 'Troca de fechadura'
         value:
-          type: string
-          example: '150.00'
+          type: number
+          example: 150.00
         status:
           type: string
-          enum: [pronto, andando]
-          example: 'pronto'
+          enum: ['ativo', 'inativo']
+          example: 'ativo'
+
+    ServicoUpdateStatusSchema:
+      type: object
+      properties:
+        status:
+          type: string
+          enum: ['ativo', 'inativo']
+          required: true
+          example: 'ativo'

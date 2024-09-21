@@ -37,19 +37,30 @@ components:
         type: string
         enum: ['ativo', 'inativo']
 
+
+    ClienteStatusParameter:
+      in: query
+      name: status
+      schema:
+        type: string
+        enum: ['ativo', 'inativo','pendente']
+
+
     ServiceStatusParameter:
       in: query
       name: status
       schema:
         type: string
-        enum: ['pronto', 'andando']
+        enum: ['ativo', 'inativo', 'pendente']
+
 
     NotificationStatusParameter:
       in: query
       name: status
       schema:
         type: string
-        enum: ['novo', 'pendente', 'servido']
+        enum: ['novo', 'pendente', 'ativo', 'inativo']
+
 
     AccountRoleParameter:
       in: query

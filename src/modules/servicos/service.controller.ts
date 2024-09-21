@@ -1,6 +1,6 @@
 // eslint-disable-next-line linebreak-style
 import Service from './servicos.service';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import { RequestQueryDto } from '@dtos/request-query.dto';
 //import multer from 'multer';
 //import path from 'path';
@@ -52,9 +52,14 @@ class Controller {
     res.status(200).json(result);
   }];*/
 
-  public async createOne(req: Request, res: Response) {
-    const result = await Service.createOne(req.body);
-    res.status(201).json(result);
+  public async createOne(req: Request, res: Response, next: NextFunction) {
+    try {
+      console.log('Status recebido antes da validação:', req.body.status);
+      const result = await Service.createOne(req.body);
+      res.status(201).json(result);
+    } catch (error) {
+      next(error);
+    }
   }
 
   public async updateOne(req: Request, res: Response) {

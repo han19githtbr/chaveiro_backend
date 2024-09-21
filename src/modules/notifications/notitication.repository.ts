@@ -1,7 +1,11 @@
+import { NotificationStatus } from './dtos/create-notification.dto';
 // notification.repository.ts
 import DataSource from '@database/data-source';
 import { Prisma } from '@prisma/client';
 import { NotificationDto, Notification } from './dtos/notification.dto'; // Certifique-se de criar este DTO conforme necessário
+
+type NotificationStatusType = typeof NotificationStatus._type;
+
 
 class NotificationRepository {
   constructor(private readonly repository = DataSource.notification) {}
@@ -57,7 +61,7 @@ class NotificationRepository {
     return this.repository.count();
   }
 
-  public updateStatus(id: number, status: string) {
+  public updateStatus(id: number, status: NotificationStatusType) {
     return this.repository.update({
       where: { id },
       data: { status },

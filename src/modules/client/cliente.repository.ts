@@ -1,4 +1,5 @@
 /* eslint-disable indent */
+// eslint-disable-next-line linebreak-style
 import DataSource from '@database/data-source';
 import { Prisma, ClienteStatus } from '@prisma/client';
 import { ClienteDto } from './dtos/cliente.dto';

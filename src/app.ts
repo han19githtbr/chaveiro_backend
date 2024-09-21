@@ -17,7 +17,11 @@ import routes from './modules/index.routes';
 import AppException from '@errors/app-exception';
 import ErrorMessages from '@errors/error-messages';
 
+//import path from 'path';
+
+
 class App {
+
   public app: express.Application;
 
   constructor() {
@@ -29,6 +33,10 @@ class App {
 
   private registerMiddlewares() {
     this.app.use('/files', express.static(process.env.STORAGE_LOCAL as string));
+    //this.app.use('/public', express.static(path.join(__dirname, '/public')));
+    //this.app.use('/public', express.static(path.join(__dirname, '/public')));
+
+
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
     this.app.use(cors());

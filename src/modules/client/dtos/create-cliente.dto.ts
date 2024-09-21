@@ -14,4 +14,5 @@ export const CreateCliente = z.object({
   }),
   endereco: z.string().trim().min(1, 'Endereço é obrigatório'),
   imageUrl: z.string().trim().url().optional(),
+  //imageUrl: z.string().max(1000),
 });

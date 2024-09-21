@@ -1,12 +1,12 @@
 /* eslint-disable indent */
 /* eslint-disable quotes */
+// eslint-disable-next-line linebreak-style
 import { z } from 'zod';
 import { ChaveiroStatus } from '@prisma/client';
 
 export type CreateChaveiroDto = z.output<typeof CreateChaveiro>;
 export const CreateChaveiro = z.object({
   name: z.string().trim().max(512),
-  //status: z.string().trim().max(512),
   status: z.nativeEnum(ChaveiroStatus).optional(),
   phone: z
     .string()

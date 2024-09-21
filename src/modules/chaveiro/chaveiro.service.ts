@@ -64,6 +64,7 @@ class Service {
     return {
       ...data,
       status: data.status ? this.convertToChaveiroStatus(data.status) : ChaveiroStatus.ativo,
+      imageUrl: data.imageUrl || '',
     };
   }
 

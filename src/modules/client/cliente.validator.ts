@@ -9,16 +9,18 @@ import { z } from 'zod';
 
 // Validação para os parâmetros de rota
 const idParamSchema = z.object({
-  id: z.number({
-    required_error: 'ID é obrigatório',
-    invalid_type_error: 'ID deve ser um número',
-  }).int().positive('ID deve ser um número positivo'),
+  id: z.preprocess((val) => {
+    if (typeof val === 'string' || val instanceof String) {
+      return parseInt(val as string, 10);
+    }
+    return val;
+  }, z.number().int().positive('ID deve ser um número positivo')),
 });
 
 
 // Validação para atualizar o status do cliente
 const updateStatusSchema = z.object({
-  status: z.enum(['pendente', 'servido'], {
+  status: z.enum(['pendente', 'ativo', 'inativo'], {
     required_error: 'Status é obrigatório',
     invalid_type_error: 'Status deve ser um valor válido (pendente ou servido)',
   }),

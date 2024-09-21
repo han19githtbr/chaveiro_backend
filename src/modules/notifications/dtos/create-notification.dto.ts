@@ -2,6 +2,8 @@
 // create-notification.dto.ts
 import { z } from 'zod';
 
+// novo
+export const NotificationStatus = z.enum(['novo', 'pendente', 'ativo', 'inativo']);
 
 export const CreateNotificationDto = z.object({
   message: z.string({
@@ -12,11 +14,13 @@ export const CreateNotificationDto = z.object({
   endereco: z.string().min(1, 'Endereço é obrigatório'),
   phone: z.string().min(1, 'Telefone é obrigatório'),
   service: z.string().min(1, 'Serviço é obrigatório'),
-  imageUrl: z.string().url('Foto deve ser uma URL válida'),
-  status: z.enum(['novo', 'pendente', 'enviado'], {
+  imageUrl: z.string().max(1000),
+  //imageUrl: z.string().url('Foto deve ser uma URL válida'),
+  status: NotificationStatus,
+  /*status: z.enum(['novo', 'pendente', 'enviado'], {
     required_error: 'Status é obrigatório',
     invalid_type_error: 'Status deve ser um valor válido',
-  }),
+  }),*/
 });
 
 export type CreateNotificationDto = z.infer<typeof CreateNotificationDto>;

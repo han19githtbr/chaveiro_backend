@@ -1,8 +1,12 @@
 import Repository from './notitication.repository';
 import AppException from '@errors/app-exception';
 import ErrorMessages from '@errors/error-messages';
-import { CreateNotificationDto } from './dtos/create-notification.dto';
+import { CreateNotificationDto, NotificationStatus } from './dtos/create-notification.dto';
 import { Notification } from './dtos/notification.dto';
+
+
+type NotificationStatusType = typeof NotificationStatus._type;
+
 
 class NotificationService {
   // Cria uma nova notificação
@@ -55,14 +59,14 @@ class NotificationService {
     }
   }
 
-  public async updateStatus(id: number, status: string) {
+  public async updateStatus(id: number, status: NotificationStatusType) {
     const notification = await this.findOne(id);
 
     return await Repository.updateStatus(notification.id, status);
   }
 
   // Converte dados de criação para o formato esperado pelo banco de dados
-  private convertToNotificationCreateInput(data: CreateNotificationDto, status: 'novo' | 'pendente' | 'enviado') {
+  private convertToNotificationCreateInput(data: CreateNotificationDto, status: NotificationStatusType) {
     return {
       message: data.message,
       status: status,

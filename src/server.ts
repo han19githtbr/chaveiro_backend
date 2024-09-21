@@ -1,4 +1,5 @@
 // server.ts
+// eslint-disable-next-line linebreak-style
 import http from 'http';
 import https from 'https';
 import { Server } from 'socket.io';
@@ -8,7 +9,6 @@ import sslOptions from '@config/ssl';
 import DataSource from '@database/data-source';
 import { MessageRepository } from '@modules/chat/message.repository';
 import { CreateMessageDto } from '@modules/chat/dtos/create-message.dto';
-
 
 const isProduction = process.env.NODE_ENV === 'production';
 const server = isProduction ? https.createServer(sslOptions, app) : http.createServer(app);
@@ -36,12 +36,10 @@ export { io };
 io.on('connection', (socket) => {
   console.log('Novo cliente conectado ao WebSocket');
 
-
   // Envia todas as mensagens armazenadas para o cliente ao conectar
   MessageRepository.getAllMessages().then(messages => {
     socket.emit('allMessages', messages);
   });
-
 
   // Evento de envio de mensagem
   socket.on('sendMessage', async(data: CreateMessageDto) => {
@@ -62,7 +60,6 @@ io.on('connection', (socket) => {
       console.error('Erro ao limpar mensagens:', error);
     }
   });
-
 
   socket.on('disconnect', () => {
     console.log('Cliente desconectado do WebSocket');

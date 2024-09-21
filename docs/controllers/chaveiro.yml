@@ -3,7 +3,7 @@ paths:
     get:
       summary: 'Rota para obter todos os chaveiros'
       tags:
-        - Chaveiro
+        - Gerencial - Chaveiro
       security:
         - BearerAuth: []
       parameters:
@@ -23,7 +23,7 @@ paths:
     post:
       summary: 'Rota para criar um novo chaveiro'
       tags:
-        - Chaveiro
+        - Gerencial - Chaveiro
       security:
         - BearerAuth: []
       requestBody:
@@ -46,7 +46,7 @@ paths:
     get:
       summary: 'Rota para obter um chaveiro pelo ID'
       tags:
-        - Chaveiro
+        - Gerencial - Chaveiro
       security:
         - BearerAuth: []
       responses:
@@ -60,7 +60,7 @@ paths:
     put:
       summary: 'Rota para atualizar um chaveiro pelo ID'
       tags:
-        - Chaveiro
+        - Gerencial - Chaveiro
       security:
         - BearerAuth: []
       requestBody:
@@ -80,7 +80,7 @@ paths:
     delete:
       summary: 'Rota para excluir um chaveiro pelo ID'
       tags:
-        - Chaveiro
+        - Gerencial - Chaveiro
       security:
         - BearerAuth: []
       responses:
@@ -95,7 +95,7 @@ paths:
     patch:
       summary: 'Rota para atualizar o status de um chaveiro pelo ID'
       tags:
-        - Chaveiro
+        - Gerencial - Chaveiro
       security:
         - BearerAuth: []
       parameters:

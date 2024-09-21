@@ -1,5 +1,6 @@
 // notification.dto.ts
 import { Prisma } from '@prisma/client';
+// eslint-disable-next-line linebreak-style
 
 // Define o DTO para notificações
 export const NotificationDto = Prisma.validator<Prisma.NotificationSelect>()({
