@@ -65,7 +65,7 @@ CREATE TABLE `User` (
 CREATE TABLE `Chaveiro` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(512) NOT NULL,
-    `imageUrl` TEXT NULL,
+    `imageUrl` VARCHAR(1000) NULL,
     `phone` VARCHAR(512) NOT NULL,
     `endereco` VARCHAR(512) NOT NULL,
     `status` ENUM('ativo', 'inativo') NOT NULL,
@@ -77,7 +77,7 @@ CREATE TABLE `Chaveiro` (
 CREATE TABLE `Cliente` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `name` VARCHAR(512) NOT NULL,
-    `imageUrl` TEXT NULL,
+    `imageUrl` VARCHAR(1000) NULL,
     `phone` VARCHAR(512) NOT NULL,
     `endereco` VARCHAR(512) NOT NULL,
     `status` ENUM('ativo', 'inativo', 'pendente', 'novo') NOT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE `Notification` (
     `name` VARCHAR(191) NOT NULL DEFAULT '',
     `endereco` VARCHAR(191) NOT NULL DEFAULT '',
     `phone` VARCHAR(191) NOT NULL DEFAULT '',
-    `imageUrl` VARCHAR(191) NOT NULL DEFAULT '',
+    `imageUrl` VARCHAR(1000) NOT NULL,
     `service` VARCHAR(191) NOT NULL DEFAULT '',
     `status` ENUM('novo', 'pendente', 'ativo', 'inativo') NOT NULL DEFAULT 'novo',
     `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
@@ -118,7 +118,7 @@ CREATE TABLE `Message` (
 CREATE TABLE `Servico` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `cliente` VARCHAR(512) NOT NULL,
-    `imageUrl` TEXT NULL,
+    `imageUrl` VARCHAR(1000) NULL,
     `service` ENUM('copia', 'conserto') NOT NULL,
     `value` VARCHAR(512) NOT NULL,
     `status` ENUM('ativo', 'inativo') NOT NULL,

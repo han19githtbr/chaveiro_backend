@@ -44,6 +44,14 @@ router
   Controller.getClientCount,
 );
 
+
+// Rota para atualizar uma notificação específica pelo ID
+router.put(
+  '/:id',
+  Auth.authentication,
+  Controller.updateOne,
+);
+
 // Rota para operações em cliente específico por ID
 router
 .route('/:id')
