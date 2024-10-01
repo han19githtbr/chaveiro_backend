@@ -1,5 +1,6 @@
 import { Prisma, PrismaClient, ServiceStatus, ServiceType } from '@prisma/client';
 
+
 const services: Prisma.ServicoCreateInput[] = [
   {
     cliente: 'Camilo',

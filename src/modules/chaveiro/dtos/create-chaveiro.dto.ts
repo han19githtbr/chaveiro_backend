@@ -1,3 +1,4 @@
+// eslint-disable-next-line linebreak-style
 /* eslint-disable indent */
 /* eslint-disable quotes */
 // eslint-disable-next-line linebreak-style
@@ -16,4 +17,5 @@ export const CreateChaveiro = z.object({
     }),
   endereco: z.string().trim().max(512, "Endereço é obrigatório"),
   imageUrl: z.string().trim().url().optional(),
+  servicos: z.array(z.number()).optional(),
 });

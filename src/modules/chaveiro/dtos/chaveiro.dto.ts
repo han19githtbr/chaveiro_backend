@@ -9,5 +9,3 @@ export const ChaveiroDto = Prisma.validator<Prisma.ChaveiroSelect>()({
   imageUrl: true,
   endereco: true,
 });
-
-
