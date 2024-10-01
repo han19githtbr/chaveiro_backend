@@ -1,4 +1,5 @@
 // eslint-disable-next-line linebreak-style
+// eslint-disable-next-line linebreak-style
 export default {
   definition: {
     openapi: '3.0.0',
@@ -8,7 +9,8 @@ export default {
     },
     servers: [
       {
-        url: 'http://localhost:3000',
+        //url: 'http://localhost:3000',
+        url: 'https://ochaveiro.netlify.app',
         description: 'Development environment',
       },
       {
