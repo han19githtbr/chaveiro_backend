@@ -9,8 +9,8 @@ export default {
     },
     servers: [
       {
-        //url: 'http://localhost:3000',
-        url: 'https://ochaveiro.netlify.app',
+        url: 'http://localhost:3000',
+        //url: 'https://ochaveiro.netlify.app',
         description: 'Development environment',
       },
       {

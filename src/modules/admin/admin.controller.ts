@@ -1,4 +1,5 @@
 // eslint-disable-next-line linebreak-style
+// eslint-disable-next-line linebreak-style
 import Service from './admin.service';
 import { Request, Response } from 'express';
 import { RequestQueryDto } from '@dtos/request-query.dto';

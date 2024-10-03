@@ -18,7 +18,8 @@ model Security {
   id            Int       @id @default(autoincrement())
   credential    String    @unique @db.VarChar(512)
   code          String?   @db.VarChar(32)
-  codeExpiresIn DateTime? @db.DateTime(0)
+  //codeExpiresIn DateTime? @db.DateTime(0)
+  codeExpiresIn DateTime?
   validated     Boolean   @default(false)
 }
 
@@ -37,7 +38,8 @@ model Admin {
   status        AccountStatus
   imageUrl      String?       @db.Text
   code          String?       @db.VarChar(32)
-  codeExpiresIn DateTime?     @db.DateTime(0)
+  //codeExpiresIn DateTime?     @db.DateTime(0)
+  codeExpiresIn DateTime?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
   permissions   Permission[]
@@ -56,7 +58,8 @@ model User {
   status        AccountStatus
   imageUrl      String?       @db.Text
   code          String?       @db.VarChar(32)
-  codeExpiresIn DateTime?     @db.DateTime(0)
+  //codeExpiresIn DateTime?     @db.DateTime(0)
+  codeExpiresIn DateTime?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
 }
