@@ -9,7 +9,7 @@ class Repository {
       where: {
         OR: [
           { email: credential },
-          { cpf: credential },
+          //{ cpf: credential },
           { phone: credential },
         ],
       },

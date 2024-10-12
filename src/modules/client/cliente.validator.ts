@@ -1,3 +1,4 @@
+// eslint-disable-next-line linebreak-style
 /* eslint-disable camelcase */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NextFunction, Request, Response } from 'express';

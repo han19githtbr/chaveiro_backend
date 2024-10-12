@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { AccountStatus } from '@prisma/client';
 import { ServiceStatus } from '@prisma/client';
 import { ClienteStatus } from '@prisma/client';
-
+import { NotificationStatus } from '@prisma/client';
 
 export type UpdateStatusDto = z.output<typeof UpdateStatus>;
 export const UpdateStatus = z.object({
@@ -11,8 +11,14 @@ export const UpdateStatus = z.object({
     AccountStatus.ativo,
     AccountStatus.inativo,
     ServiceStatus.ativo,
-    ClienteStatus.ativo,
+    ClienteStatus.servido,
     ClienteStatus.pendente,
-    ClienteStatus.novo,
+    ClienteStatus.andando,
+    ClienteStatus.cancelado,
+    NotificationStatus.novo,
+    NotificationStatus.servido,
+    NotificationStatus.pendente,
+    NotificationStatus.andando,
+    NotificationStatus.cancelado,
   ]),
 });

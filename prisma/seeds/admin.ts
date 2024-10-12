@@ -1,4 +1,5 @@
 // eslint-disable-next-line linebreak-style
+// eslint-disable-next-line linebreak-style
 import { Prisma, PrismaClient, AccountRole, AccountStatus, Permissions } from '@prisma/client';
 import PasswordHelper from '../../src/utils/helpers/password.helper';
 

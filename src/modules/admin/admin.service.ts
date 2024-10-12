@@ -1,3 +1,4 @@
+// eslint-disable-next-line linebreak-style
 import Repository from './admin.repository';
 // eslint-disable-next-line linebreak-style
 

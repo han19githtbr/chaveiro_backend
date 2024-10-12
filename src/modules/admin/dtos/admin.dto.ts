@@ -1,3 +1,4 @@
+// eslint-disable-next-line linebreak-style
 import { Prisma } from '@prisma/client';
 // eslint-disable-next-line linebreak-style
 

@@ -6,5 +6,5 @@ export type UpdateClienteDto = z.output<typeof UpdateCliente>;
 export const UpdateCliente = CreateCliente;
 
 export const UpdateStatus = z.object({
-  status: z.enum([ClienteStatus.ativo, ClienteStatus.inativo, ClienteStatus.pendente]),
+  status: z.enum([ClienteStatus.servido, ClienteStatus.cancelado, ClienteStatus.pendente, ClienteStatus.andando]),
 });

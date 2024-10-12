@@ -1,3 +1,4 @@
+// eslint-disable-next-line linebreak-style
 import { ExtractJwt, StrategyOptions } from 'passport-jwt';
 // eslint-disable-next-line linebreak-style
 

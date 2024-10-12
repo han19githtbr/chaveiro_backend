@@ -3,7 +3,7 @@
 import { z } from 'zod';
 
 // novo
-export const NotificationStatus = z.enum(['novo', 'pendente', 'ativo', 'inativo']);
+export const NotificationStatus = z.enum(['novo', 'pendente', 'servido', 'cancelado', 'andando']);
 
 export const CreateNotificationDto = z.object({
   message: z.string({

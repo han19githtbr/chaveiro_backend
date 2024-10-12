@@ -1,3 +1,4 @@
+// eslint-disable-next-line linebreak-style
 import { z } from 'zod';
 // eslint-disable-next-line linebreak-style
 

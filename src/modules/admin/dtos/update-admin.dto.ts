@@ -1,4 +1,5 @@
 // eslint-disable-next-line linebreak-style
+// eslint-disable-next-line linebreak-style
 import { z } from 'zod';
 import { CreateAdmin } from './create-admin.dto';
 

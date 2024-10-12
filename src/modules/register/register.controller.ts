@@ -1,4 +1,4 @@
-
+// eslint-disable-next-line linebreak-style
 // eslint-disable-next-line linebreak-style
 import Service from './register.service';
 import { Request, Response } from 'express';

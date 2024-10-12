@@ -22,8 +22,8 @@ components:
           example: 'Rua A, Nº 123, Bairro B'
         status:
           type: string
-          enum: ['ativo', 'inativo']
-          example: 'ativo'
+          enum: ['servido', 'pendente', 'cancelado', 'andando']
+          example: 'servido'
         createdAt:
           type: string
           format: date-time
@@ -53,14 +53,14 @@ components:
           example: 'Rua A, Nº 123, Bairro B'
         status:
           type: string
-          enum: ['ativo', 'inativo']
-          example: 'ativo'
+          enum: ['servido', 'pendente', 'cancelado', 'andando']
+          example: 'servido'
 
     ClienteUpdateStatusSchema:
       type: object
       properties:
         status:
           type: string
-          enum: ['ativo', 'inativo']
+          enum: ['servido', 'pendente', 'cancelado', 'andando']
           required: true
-          example: 'ativo'
+          example: 'servido'

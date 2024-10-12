@@ -4,7 +4,8 @@ import Repository from './user.repository';
 import AppException from '@errors/app-exception';
 import ErrorMessages from '@errors/error-messages';
 
-import { AccountStatus, User } from '@prisma/client';
+//import { AccountStatus, User } from '@prisma/client';
+//import { User } from '@prisma/client';
 import { IPayloadDto } from '../../dtos/payload.dto';
 import { LoginDto } from '../../dtos/login.dto';
 import { ForgotPasswordDto, ResetPasswordDto } from '../../dtos/password.dto';
@@ -20,7 +21,7 @@ class Service {
     const user = await this.findByCredential(data.credential);
 
     // check if user is active.
-    this.checkIfUserIsActive(user);
+    //this.checkIfUserIsActive(user);
 
     // compare password.
     this.comparePasswords(data.password, user.password);
@@ -29,7 +30,7 @@ class Service {
     const payload: IPayloadDto = {
       id: user.id,
       role: user.role,
-      type: user.type,
+      //type: user.type,
       name: user.name,
     };
 
@@ -71,14 +72,14 @@ class Service {
     }
   }
 
-  private checkIfUserIsActive(user: User) {
+  /*private checkIfUserIsActive(user: User) {
     if (user.status === AccountStatus.inativo) {
       throw new AppException(403, ErrorMessages.INACTIVE);
     }
     if (user.status === AccountStatus.pendente) {
       throw new AppException(403, ErrorMessages.PENDING);
     }
-  }
+  }*/
 
   private comparePasswords(password: string, hash: string) {
     const isMatch = PasswordHelper.comparePasswordAndHash(password, hash);

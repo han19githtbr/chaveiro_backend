@@ -69,10 +69,10 @@ class Service {
   private async findByCredential(data: CreateRegisterDto) {
     const emailAlreadyExists = await userRepository.findByCredential(data.email);
     const phoneAlreadyExists = await userRepository.findByCredential(data.phone);
-    const cpfAlreadyExists = await userRepository.findByCredential(data.cpf);
+    //const cpfAlreadyExists = await userRepository.findByCredential(data.cpf);
 
 
-    if (emailAlreadyExists || phoneAlreadyExists || cpfAlreadyExists) {
+    if (emailAlreadyExists || phoneAlreadyExists ) {
       throw new AppException(400, ErrorMessages.ACCOUNT_ALREADY_EXISTS);
     }
     return;

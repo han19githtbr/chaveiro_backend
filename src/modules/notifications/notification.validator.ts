@@ -13,15 +13,15 @@ const createNotificationSchema = z.object({
   phone: z.string().min(1, 'Telefone é obrigatório'),
   imageUrl: z.string().max(1000),
   //imageUrl: z.string().url('Foto deve ser uma URL válida'),
-  status: z.enum(['novo', 'pendente', 'enviado']),
+  status: z.enum(['novo', 'pendente', 'cancelado', 'andando', 'servido']),
 });
 
 
 // Definindo o esquema de validação para atualizar o status da notificação
 const updateNotificationStatusSchema = z.object({
-  status: z.enum(['novo', 'pendente', 'enviado'], {
+  status: z.enum(['novo', 'pendente', 'cancelado', 'andando', 'servido'], {
     required_error: 'Status é obrigatório',
-    invalid_type_error: 'Status deve ser um valor válido (pendente ou enviado)',
+    invalid_type_error: 'Status deve ser um valor válido (pendente ou cancelado)',
   }),
 });
 

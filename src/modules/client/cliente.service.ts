@@ -12,6 +12,7 @@ interface ClienteCreateInput {
   name: string;
   phone: string;
   endereco: string;
+  service: string;
   status: ClienteStatus;
   imageUrl?: string;
 }
@@ -20,6 +21,7 @@ interface ClienteUpdateInput {
   name?: string;
   phone?: string;
   endereco?: string;
+  service: string;
   status?: ClienteStatus;
   imageUrl?: string;
 }
@@ -65,7 +67,7 @@ class Service {
   private convertToClienteCreateInput(data: CreateClienteDto): ClienteCreateInput {
     return {
       ...data,
-      status: data.status ? this.convertToClienteStatus(data.status) : ClienteStatus.ativo,
+      status: data.status ? this.convertToClienteStatus(data.status) : ClienteStatus.servido,
     };
   }
 
@@ -119,7 +121,8 @@ class Service {
       phone: `9${Math.floor(100000000 + Math.random() * 900000000)}`,
       imageUrl: 'https://images4.alphacoders.com/115/thumb-1920-115716.jpg',
       endereco: 'Endereço Aleatório, 123',
-      status: Math.random() < 0.5 ? ClienteStatus.inativo : ClienteStatus.ativo,
+      service: 'Conserto',
+      status: Math.random() < 0.5 ? ClienteStatus.pendente : ClienteStatus.servido,
     };
 
     try {

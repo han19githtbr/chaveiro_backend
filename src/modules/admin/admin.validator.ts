@@ -1,4 +1,5 @@
 // eslint-disable-next-line linebreak-style
+// eslint-disable-next-line linebreak-style
 import BaseValidator from '@abstracts/validator.abstract';
 import { RequestHandler } from 'express';
 import { CreateAdmin } from './dtos/create-admin.dto';

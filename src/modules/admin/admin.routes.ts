@@ -1,4 +1,5 @@
 // eslint-disable-next-line linebreak-style
+// eslint-disable-next-line linebreak-style
 import { Router } from 'express';
 import { Permissions } from '@prisma/client';
 

@@ -51,11 +51,11 @@ model User {
   name          String        @db.VarChar(512)
   email         String        @unique @db.VarChar(512)
   password      String        @db.Text
-  type          UserType      @default(app)
-  cpf           String        @unique @db.VarChar(11)
+  //type          UserType      @default(app)
+  //cpf           String        @unique @db.VarChar(11)
   phone         String        @unique @db.VarChar(11)
-  birthDate     String        @db.VarChar(10)
-  status        AccountStatus
+  //birthDate     String        @db.VarChar(10)
+  //status        AccountStatus
   imageUrl      String?       @db.Text
   code          String?       @db.VarChar(32)
   //codeExpiresIn DateTime?     @db.DateTime(0)
@@ -84,16 +84,17 @@ model Cliente {
   name     String        @db.VarChar(512)
   //imageUrl String?       @db.Text
   imageUrl String?       @db.VarChar(1000)
+  service  String       @default("")
   phone    String        @db.VarChar(512)
   endereco String        @db.VarChar(512)
   status   ClienteStatus
 }
 
 enum ClienteStatus {
-  ativo
-  inativo
+  servido
+  andando
   pendente
-  novo
+  cancelado
 }
 
 model Notification {
@@ -114,8 +115,9 @@ model Notification {
 enum NotificationStatus {
   novo
   pendente
-  ativo
-  inativo
+  servido
+  andando
+  cancelado
 }
 
 model Message {

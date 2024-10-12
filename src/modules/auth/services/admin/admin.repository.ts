@@ -1,3 +1,4 @@
+// eslint-disable-next-line linebreak-style
 import DataSource from '@database/data-source';
 // eslint-disable-next-line linebreak-style
 

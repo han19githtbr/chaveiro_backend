@@ -43,7 +43,7 @@ components:
       name: status
       schema:
         type: string
-        enum: ['ativo', 'inativo','pendente']
+        enum: ['servido', 'pendente', 'cancelado', 'andando']
 
 
     ServiceStatusParameter:
@@ -51,7 +51,7 @@ components:
       name: status
       schema:
         type: string
-        enum: ['ativo', 'inativo', 'pendente']
+        enum: ['ativo', 'inativo']
 
 
     NotificationStatusParameter:
@@ -59,7 +59,7 @@ components:
       name: status
       schema:
         type: string
-        enum: ['novo', 'pendente', 'ativo', 'inativo']
+        enum: ['novo', 'servido', 'pendente', 'cancelado', 'andando']
 
 
     AccountRoleParameter:
