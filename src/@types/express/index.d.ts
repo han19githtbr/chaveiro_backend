@@ -1,3 +1,4 @@
+// eslint-disable-next-line linebreak-style
 import { IPayloadDto } from '../../modules/auth/dtos/payload.dto';
 // eslint-disable-next-line linebreak-style
 

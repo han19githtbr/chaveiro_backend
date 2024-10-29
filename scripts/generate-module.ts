@@ -1,4 +1,5 @@
 // eslint-disable-next-line linebreak-style
+// eslint-disable-next-line linebreak-style
 import * as fs from 'fs/promises';
 import * as path from 'path';
 

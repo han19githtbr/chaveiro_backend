@@ -64,6 +64,25 @@ model User {
   updatedAt     DateTime      @updatedAt
 }
 
+enum Permissions {
+  configuracoes
+  chaveiros
+  servicos
+  desenvolvimento
+  dashboard
+}
+
+enum AccountRole {
+  admin
+  user
+}
+
+enum AccountStatus {
+  ativo
+  inativo
+  pendente
+}
+
 model Chaveiro {
   id       Int            @id @default(autoincrement())
   name     String         @db.VarChar(512)
@@ -151,25 +170,6 @@ enum ServiceStatus {
 enum ServiceType {
   copia
   conserto
-}
-
-enum Permissions {
-  configuracoes
-  chaveiros
-  servicos
-  desenvolvimento
-  dashboard
-}
-
-enum AccountRole {
-  admin
-  user
-}
-
-enum AccountStatus {
-  ativo
-  inativo
-  pendente
 }
 
 enum UserType {

@@ -1,4 +1,5 @@
 // eslint-disable-next-line linebreak-style
+// eslint-disable-next-line linebreak-style
 import { Router } from 'express';
 // eslint-disable-next-line linebreak-style
 
@@ -7,14 +8,17 @@ import multer from 'multer';
 import multerOptions from '@config/storage';
 import Controller from './upload-file.controller';
 
+// Novo
+const upload = multer(multerOptions);
 const router = Router();
 
-router
-.route('/')
+router.route('/')
 .post(
   // Auth.authentication,
-  multer(multerOptions).single('file'),
-  Controller.upload,
+  // multer(multerOptions).single('file'),
+  // Controller.upload,
+  upload.single('file'),
+  (req, res) => Controller.upload(req, res)
 );
 
 export default router;

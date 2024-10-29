@@ -1,4 +1,3 @@
-
 // eslint-disable-next-line linebreak-style
 // eslint-disable-next-line linebreak-style
 import BaseValidator from '@abstracts/validator.abstract';

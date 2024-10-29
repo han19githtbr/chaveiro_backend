@@ -1,4 +1,5 @@
 // eslint-disable-next-line linebreak-style
+// eslint-disable-next-line linebreak-style
 import { Request, Response, NextFunction } from 'express';
 import { AccountRole, Permissions } from '@prisma/client';
 import { IPayloadDto } from '../../modules/auth/dtos/payload.dto';

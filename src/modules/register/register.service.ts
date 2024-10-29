@@ -1,4 +1,3 @@
-
 import Repository from './register.repository';
 // eslint-disable-next-line linebreak-style
 

@@ -1,4 +1,5 @@
 // eslint-disable-next-line linebreak-style
+// eslint-disable-next-line linebreak-style
 import AdminService from './services/admin/admin.service';
 import UserService from './services/user/user.service';
 import { Request, Response } from 'express';

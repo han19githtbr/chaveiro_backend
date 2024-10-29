@@ -1,3 +1,4 @@
+// eslint-disable-next-line linebreak-style
 import 'express-async-errors';
 // eslint-disable-next-line linebreak-style
 
@@ -12,12 +13,17 @@ import swaggerUI from 'swagger-ui-express';
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerOptions from '@config/swagger';
 
+import dotenv from 'dotenv';
 import routes from './modules/index.routes';
 
 import AppException from '@errors/app-exception';
 import ErrorMessages from '@errors/error-messages';
+import uploadRoutes from './modules/upload-file/upload-file.routes';
 
-//import path from 'path';
+import path from 'path';
+
+dotenv.config();
+
 
 
 class App {
@@ -32,10 +38,10 @@ class App {
   }
 
   private registerMiddlewares() {
+    //this.app.use('/files', express.static(path.resolve(process.env.STORAGE_LOCAL as string)));
     this.app.use('/files', express.static(process.env.STORAGE_LOCAL as string));
     //this.app.use('/public', express.static(path.join(__dirname, '/public')));
     //this.app.use('/public', express.static(path.join(__dirname, '/public')));
-
 
     this.app.use(express.json());
     this.app.use(express.urlencoded({ extended: true }));
@@ -49,6 +55,7 @@ class App {
   private registerRoutes() {
     // this.app.use('/swagger', swaggerUI.serve, swaggerUI.setup(swaggerJsdoc(swaggerOptions), { explorer: true }));
     this.app.use(routes);
+    //this.app.use('/upload', uploadRoutes);
   }
 
   private registerGlobalErrorHandlerRoute() {
