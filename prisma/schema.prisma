@@ -69,7 +69,7 @@ model User {
   //cpf           String        @unique @db.VarChar(11)
   phone         String        @unique @db.VarChar(11)
   //birthDate     String        @db.VarChar(10)
-  //status        AccountStatus
+  status        AccountStatus
   imageUrl      String?       @db.Text
   code          String?       @db.VarChar(32)
   //codeExpiresIn DateTime?     @db.DateTime(0)

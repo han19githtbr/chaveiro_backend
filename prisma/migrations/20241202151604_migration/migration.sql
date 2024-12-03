@@ -63,6 +63,7 @@ CREATE TABLE `User` (
     `email` VARCHAR(512) NOT NULL,
     `password` TEXT NOT NULL,
     `phone` VARCHAR(11) NOT NULL,
+    `status` ENUM('ativo', 'inativo', 'pendente') NOT NULL,
     `imageUrl` TEXT NULL,
     `code` VARCHAR(32) NULL,
     `codeExpiresIn` DATETIME(3) NULL,

@@ -1,19 +1,19 @@
-import Repository from './user.repository';
+import Repository from "./user.repository";
 // eslint-disable-next-line linebreak-style
 
-import AppException from '@errors/app-exception';
-import ErrorMessages from '@errors/error-messages';
+import AppException from "@errors/app-exception";
+import ErrorMessages from "@errors/error-messages";
 
-//import { AccountStatus, User } from '@prisma/client';
-//import { User } from '@prisma/client';
-import { IPayloadDto } from '../../dtos/payload.dto';
-import { LoginDto } from '../../dtos/login.dto';
-import { ForgotPasswordDto, ResetPasswordDto } from '../../dtos/password.dto';
+import { AccountStatus, User } from "@prisma/client";
 
-import CodeHelper from '@helpers/code.helper';
-import JwtHelper from '@helpers/token.helper';
-import PasswordHelper from '@helpers/password.helper';
-import MailService from '../../../mail/mail.service';
+import { IPayloadDto } from "../../dtos/payload.dto";
+import { LoginDto } from "../../dtos/login.dto";
+import { ForgotPasswordDto, ResetPasswordDto } from "../../dtos/password.dto";
+
+import CodeHelper from "@helpers/code.helper";
+import JwtHelper from "@helpers/token.helper";
+import PasswordHelper from "@helpers/password.helper";
+import MailService from "../../../mail/mail.service";
 
 class Service {
   public async loginUser(data: LoginDto) {
@@ -21,7 +21,7 @@ class Service {
     const user = await this.findByCredential(data.credential);
 
     // check if user is active.
-    //this.checkIfUserIsActive(user);
+    this.checkIfUserIsActive(user);
 
     // compare password.
     this.comparePasswords(data.password, user.password);
@@ -49,7 +49,7 @@ class Service {
 
     // send an email with code.
     await MailService.sendForgotPasswordEmail(user.email, { code, minutes });
-    return { message: 'Código de recuperação de senha enviado no seu email!' };
+    return { message: "Código de recuperação de senha enviado no seu email!" };
   }
 
   public async resetPasswordUser(data: ResetPasswordDto) {
@@ -60,10 +60,12 @@ class Service {
     this.checkCodeValidation(user.codeExpiresIn as Date);
 
     // change password.
-    await Repository.changePassword(user.id, PasswordHelper.hash(data.password));
-    return { message: 'Senha atualizada com sucesso!' };
+    await Repository.changePassword(
+      user.id,
+      PasswordHelper.hash(data.password)
+    );
+    return { message: "Senha atualizada com sucesso!" };
   }
-
 
   private checkCodeValidation(codeExpiresIn: Date) {
     const isExpired = CodeHelper.isExpired(codeExpiresIn);
@@ -72,14 +74,14 @@ class Service {
     }
   }
 
-  /*private checkIfUserIsActive(user: User) {
+  private checkIfUserIsActive(user: User) {
     if (user.status === AccountStatus.inativo) {
       throw new AppException(403, ErrorMessages.INACTIVE);
     }
     if (user.status === AccountStatus.pendente) {
       throw new AppException(403, ErrorMessages.PENDING);
     }
-  }*/
+  }
 
   private comparePasswords(password: string, hash: string) {
     const isMatch = PasswordHelper.comparePasswordAndHash(password, hash);

@@ -1,23 +1,27 @@
-import Repository from './notitication.repository';
-import AppException from '@errors/app-exception';
-import ErrorMessages from '@errors/error-messages';
-import { CreateNotificationDto, NotificationStatus } from './dtos/create-notification.dto';
-import { Notification } from './dtos/notification.dto';
-
+import Repository from "./notitication.repository";
+import AppException from "@errors/app-exception";
+import ErrorMessages from "@errors/error-messages";
+import {
+  CreateNotificationDto,
+  NotificationStatus,
+} from "./dtos/create-notification.dto";
+import { Notification } from "./dtos/notification.dto";
 
 type NotificationStatusType = typeof NotificationStatus._type;
-
 
 class NotificationService {
   // Cria uma nova notificação
   public async createOne(data: CreateNotificationDto): Promise<Notification> {
-    const status = data.status || 'novo';
+    const status = data.status || "novo";
     const convertedData = this.convertToNotificationCreateInput(data, status);
     return await Repository.createOne(convertedData);
   }
 
   // Obtém todas as notificações com paginação
-  public async findAllWithPagination(page: number, size: number): Promise<Notification[]> {
+  public async findAllWithPagination(
+    page: number,
+    size: number
+  ): Promise<Notification[]> {
     return await Repository.findAllWithPagination(page, size);
   }
 
@@ -42,7 +46,10 @@ class NotificationService {
   }
 
   // Atualiza uma notificação pelo ID
-  public async updateOne(id: number, data: Partial<CreateNotificationDto>): Promise<Notification> {
+  public async updateOne(
+    id: number,
+    data: Partial<CreateNotificationDto>
+  ): Promise<Notification> {
     return await Repository.updateOne(id, data);
   }
 
@@ -66,7 +73,10 @@ class NotificationService {
   }
 
   // Converte dados de criação para o formato esperado pelo banco de dados
-  private convertToNotificationCreateInput(data: CreateNotificationDto, status: NotificationStatusType) {
+  private convertToNotificationCreateInput(
+    data: CreateNotificationDto,
+    status: NotificationStatusType
+  ) {
     return {
       message: data.message,
       status: status,

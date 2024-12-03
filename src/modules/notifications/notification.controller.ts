@@ -1,10 +1,9 @@
-import { io } from 'server';
-import NotificationService from './notification.service';
-import { Request, Response } from 'express';
-import { CreateNotificationDto } from './dtos/create-notification.dto';
-import { z } from 'zod';
+import { io } from "server";
+import NotificationService from "./notification.service";
+import { Request, Response } from "express";
+import { CreateNotificationDto } from "./dtos/create-notification.dto";
+import { z } from "zod";
 //import Service from './notification.service';
-
 
 class NotificationController {
   // Busca todas as notificações com ou sem paginação
@@ -12,13 +11,17 @@ class NotificationController {
     const { size, page } = req.query;
 
     try {
-      const result = (size && page)
-        ? await NotificationService.findAllWithPagination(Number(size), Number(page))
-        : await NotificationService.findAllNoPagination();
+      const result =
+        size && page
+          ? await NotificationService.findAllWithPagination(
+              Number(size),
+              Number(page)
+            )
+          : await NotificationService.findAllNoPagination();
 
       res.status(200).json(result);
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao obter notificações' });
+      res.status(500).json({ error: "Erro ao obter notificações" });
     }
   }
 
@@ -28,7 +31,7 @@ class NotificationController {
       const result = await NotificationService.findAllNoPagination();
       res.status(200).json(result);
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao obter notificações' });
+      res.status(500).json({ error: "Erro ao obter notificações" });
     }
   }
 
@@ -37,10 +40,15 @@ class NotificationController {
     const { page = 1, size = 10 } = req.query; // Valores padrão para paginação
 
     try {
-      const result = await NotificationService.findAllWithPagination(Number(page), Number(size));
+      const result = await NotificationService.findAllWithPagination(
+        Number(page),
+        Number(size)
+      );
       res.status(200).json({ notifications: result });
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao obter notificações com paginação' });
+      res
+        .status(500)
+        .json({ error: "Erro ao obter notificações com paginação" });
     }
   }
 
@@ -48,9 +56,11 @@ class NotificationController {
   public async findOne(req: Request, res: Response) {
     try {
       const result = await NotificationService.findOne(+req.params.id);
-      res.status(result ? 200 : 404).json(result ? result : { message: 'Notificação não encontrada' });
+      res
+        .status(result ? 200 : 404)
+        .json(result ? result : { message: "Notificação não encontrada" });
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao obter a notificação' });
+      res.status(500).json({ error: "Erro ao obter a notificação" });
     }
   }
 
@@ -62,14 +72,18 @@ class NotificationController {
 
       // Verifique se o DTO foi criado com sucesso
       if (!createNotificationDto) {
-        return res.status(400).json({ error: 'Dados inválidos para notificação' });
+        return res
+          .status(400)
+          .json({ error: "Dados inválidos para notificação" });
       }
 
       // Cria a notificação usando o serviço
-      const newNotification = await NotificationService.createOne(createNotificationDto);
+      const newNotification = await NotificationService.createOne(
+        createNotificationDto
+      );
 
       // Emite a notificação para todos os clientes conectados usando Socket.IO
-      io.emit('notification', newNotification);
+      io.emit("notification", newNotification);
 
       // Retorna a notificação criada
       res.status(201).json(newNotification);
@@ -79,23 +93,37 @@ class NotificationController {
         return res.status(400).json({ errors: error.errors });
       } else {
         // Para outros tipos de erros, retorna um erro genérico de servidor
-        console.error('Erro ao criar notificação:', error);
-        res.status(500).json({ error: 'Erro ao criar notificação' });
+        console.error("Erro ao criar notificação:", error);
+        res.status(500).json({ error: "Erro ao criar notificação" });
       }
     }
   }
 
-
   // Atualiza uma notificação existente pelo ID
   public async updateOne(req: Request, res: Response) {
     const { id } = req.params;
-    const { message, status, name, endereco, phone, service, imageUrl } = req.body; // Corrigido para usar 'status' em vez de 'data'
+    const { message, status, name, endereco, phone, service, imageUrl } =
+      req.body; // Corrigido para usar 'status' em vez de 'data'
 
     try {
-      const updatedNotification = await NotificationService.updateOne(+id, { message, status, name, endereco, phone, service, imageUrl });
-      res.status(updatedNotification ? 200 : 404).json(updatedNotification ? updatedNotification : { message: 'Notificação não encontrada' });
+      const updatedNotification = await NotificationService.updateOne(+id, {
+        message,
+        status,
+        name,
+        endereco,
+        phone,
+        service,
+        imageUrl,
+      });
+      res
+        .status(updatedNotification ? 200 : 404)
+        .json(
+          updatedNotification
+            ? updatedNotification
+            : { message: "Notificação não encontrada" }
+        );
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao atualizar a notificação' });
+      res.status(500).json({ error: "Erro ao atualizar a notificação" });
     }
   }
 
@@ -106,28 +134,31 @@ class NotificationController {
     try {
       const isDeleted = await NotificationService.deleteOne(+id); // Recebe um booleano indicando sucesso
       if (isDeleted) {
-        res.status(200).json({ message: 'Notificação excluída com sucesso!' });
+        res.status(200).json({ message: "Notificação excluída com sucesso!" });
       } else {
-        res.status(404).json({ message: 'Notificação não encontrada' });
+        res.status(404).json({ message: "Notificação não encontrada" });
       }
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao excluir a notificação' });
+      res.status(500).json({ error: "Erro ao excluir a notificação" });
     }
   }
-
 
   public async updateStatus(req: Request, res: Response) {
     const { id } = req.params;
     const { status } = req.body;
 
     try {
-      const updatedNotification = await NotificationService.updateStatus(+id, status);
+      const updatedNotification = await NotificationService.updateStatus(
+        +id,
+        status
+      );
       res.status(200).json(updatedNotification);
     } catch (error) {
-      res.status(500).json({ error: 'Erro ao atualizar o status da notificação' });
+      res
+        .status(500)
+        .json({ error: "Erro ao atualizar o status da notificação" });
     }
   }
-
 }
 
 export default new NotificationController();

@@ -1,11 +1,10 @@
-import { NotificationStatus } from './dtos/create-notification.dto';
+import { NotificationStatus } from "./dtos/create-notification.dto";
 // notification.repository.ts
-import DataSource from '@database/data-source';
-import { Prisma } from '@prisma/client';
-import { NotificationDto, Notification } from './dtos/notification.dto'; // Certifique-se de criar este DTO conforme necessário
+import DataSource from "@database/data-source";
+import { Prisma } from "@prisma/client";
+import { NotificationDto, Notification } from "./dtos/notification.dto"; // Certifique-se de criar este DTO conforme necessário
 
 type NotificationStatusType = typeof NotificationStatus._type;
-
 
 class NotificationRepository {
   constructor(private readonly repository = DataSource.notification) {}
@@ -14,7 +13,7 @@ class NotificationRepository {
     const [notifications, count] = await DataSource.$transaction([
       this.repository.findMany({
         select: NotificationDto,
-        orderBy: { createdAt: 'desc' },
+        orderBy: { createdAt: "desc" },
       }),
       this.repository.count(),
     ]);
@@ -22,14 +21,16 @@ class NotificationRepository {
     return [notifications as Notification[], count];
   }
 
-
   // Obtém todas as notificações com paginação
-  public async findAllWithPagination(page: number, size: number): Promise<Notification[]> {
+  public async findAllWithPagination(
+    page: number,
+    size: number
+  ): Promise<Notification[]> {
     return this.repository.findMany({
       skip: (page - 1) * size,
       take: size,
       select: NotificationDto,
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
     });
   }
 
@@ -37,12 +38,15 @@ class NotificationRepository {
   public async findAllNoPagination(): Promise<Notification[]> {
     return this.repository.findMany({
       select: NotificationDto,
-      orderBy: { createdAt: 'desc' },
+      orderBy: { createdAt: "desc" },
     });
   }
 
   public findOne(id: number) {
-    return this.repository.findUnique({ where: { id }, select: NotificationDto });
+    return this.repository.findUnique({
+      where: { id },
+      select: NotificationDto,
+    });
   }
 
   public createOne(data: Prisma.NotificationCreateInput) {
@@ -50,7 +54,11 @@ class NotificationRepository {
   }
 
   public updateOne(id: number, data: Prisma.NotificationUpdateInput) {
-    return this.repository.update({ where: { id }, data, select: NotificationDto });
+    return this.repository.update({
+      where: { id },
+      data,
+      select: NotificationDto,
+    });
   }
 
   public deleteOne(id: number) {

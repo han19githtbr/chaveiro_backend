@@ -1,5 +1,5 @@
 // notification.dto.ts
-import { Prisma } from '@prisma/client';
+import { Prisma } from "@prisma/client";
 // eslint-disable-next-line linebreak-style
 
 // Define o DTO para notificações

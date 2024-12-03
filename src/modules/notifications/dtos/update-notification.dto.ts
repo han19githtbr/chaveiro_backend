@@ -1,5 +1,8 @@
-import { z } from 'zod';
-import { CreateNotificationDto, NotificationStatus } from './create-notification.dto';
+import { z } from "zod";
+import {
+  CreateNotificationDto,
+  NotificationStatus,
+} from "./create-notification.dto";
 
 export const UpdateNotificationDto = z.object({
   message: CreateNotificationDto.shape.message,
