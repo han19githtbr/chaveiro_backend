@@ -1,17 +1,17 @@
-import Repository from './register.repository';
+import Repository from "./register.repository";
 // eslint-disable-next-line linebreak-style
 
-import JwtHelper from '@helpers/token.helper';
-import Auth from '@middlewares/auth.middleware';
-import AppException from '@errors/app-exception';
-import ErrorMessages from '@errors/error-messages';
-import PaginationHelper from '@helpers/pagination.helper';
+import JwtHelper from "@helpers/token.helper";
+import Auth from "@middlewares/auth.middleware";
+import AppException from "@errors/app-exception";
+import ErrorMessages from "@errors/error-messages";
+import PaginationHelper from "@helpers/pagination.helper";
 
-import { CreateRegisterDto } from './dtos/create-register.dto';
-import { UpdateRegisterDto } from './dtos/update-register.dto';
-import { IPayloadDto } from '@modules/auth/dtos/payload.dto';
-import passwordHelper from '@helpers/password.helper';
-import userRepository from '@modules/auth/services/user/user.repository';
+import { CreateRegisterDto } from "./dtos/create-register.dto";
+import { UpdateRegisterDto } from "./dtos/update-register.dto";
+import { IPayloadDto } from "@modules/auth/dtos/payload.dto";
+import passwordHelper from "@helpers/password.helper";
+import userRepository from "@modules/auth/services/user/user.repository";
 
 class Service {
   public async findAll(size: number, page: number, search?: string) {
@@ -38,7 +38,11 @@ class Service {
 
     const password = passwordHelper.hash(data.password);
 
-    const newUser = await Repository.createOne({ ...data, password });
+    const newUser = await Repository.createOne({
+      ...data,
+      password,
+      status: "ativo",
+    });
     const payload: IPayloadDto = {
       id: newUser.id,
       role: newUser.role,
@@ -51,7 +55,11 @@ class Service {
     };
   }
 
-  public async updateOne(id: number, data: UpdateRegisterDto, currentAuth: IPayloadDto) {
+  public async updateOne(
+    id: number,
+    data: UpdateRegisterDto,
+    currentAuth: IPayloadDto
+  ) {
     const register = await this.findOne(id);
     Auth.checkCurrentUser(currentAuth, register.id);
 
@@ -66,12 +74,15 @@ class Service {
   }
 
   private async findByCredential(data: CreateRegisterDto) {
-    const emailAlreadyExists = await userRepository.findByCredential(data.email);
-    const phoneAlreadyExists = await userRepository.findByCredential(data.phone);
+    const emailAlreadyExists = await userRepository.findByCredential(
+      data.email
+    );
+    const phoneAlreadyExists = await userRepository.findByCredential(
+      data.phone
+    );
     //const cpfAlreadyExists = await userRepository.findByCredential(data.cpf);
 
-
-    if (emailAlreadyExists || phoneAlreadyExists ) {
+    if (emailAlreadyExists || phoneAlreadyExists) {
       throw new AppException(400, ErrorMessages.ACCOUNT_ALREADY_EXISTS);
     }
     return;
