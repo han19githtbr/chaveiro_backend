@@ -16,7 +16,7 @@ class Repository {
         { OR:
           [
             { cliente: { contains: search } },
-            //{ service: { contains: search } },
+
           ],
         },
       ],
@@ -40,7 +40,6 @@ class Repository {
         { OR:
           [
             { cliente: { contains: search } },
-            //{ service: { contains: search } },
           ],
         },
       ],

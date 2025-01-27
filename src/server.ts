@@ -20,7 +20,6 @@ const server = isProduction
 // Configura o middleware CORS para o express
 app.use(
   cors({
-    //origin: "http://localhost:4200",
     origin: process.env.APP_URL, // Define a URL do frontend permitida
     methods: ["GET", "POST", "PUT", "DELETE"], // Métodos permitidos
     credentials: true, // Permite cookies
@@ -50,7 +49,7 @@ io.on("connection", (socket) => {
   });
 
   // Evento de envio de mensagem
-  socket.on("sendMessage", async (data: CreateMessageDto) => {
+  socket.on("sendMessage", async(data: CreateMessageDto) => {
     try {
       const message = await MessageRepository.createMessage(data);
       io.emit("newMessage", message); // Envia a nova mensagem para todos os clientes conectados
@@ -60,7 +59,7 @@ io.on("connection", (socket) => {
   });
 
   // Evento para limpar mensagens
-  socket.on("clearMessages", async () => {
+  socket.on("clearMessages", async() => {
     try {
       await MessageRepository.clearMessages();
       io.emit("messagesCleared"); // Notifica todos os clientes que as mensagens foram limpas

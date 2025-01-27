@@ -10,7 +10,7 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
+  provider = "mysql"
   url      = env("DATABASE_URL")
 }
 
@@ -32,7 +32,6 @@ model Security {
   id            Int       @id @default(autoincrement())
   credential    String    @unique @db.VarChar(512)
   code          String?   @db.VarChar(32)
-  //codeExpiresIn DateTime? @db.DateTime(0)
   codeExpiresIn DateTime?
   validated     Boolean   @default(false)
 }
@@ -52,7 +51,6 @@ model Admin {
   status        AccountStatus
   imageUrl      String?       @db.Text
   code          String?       @db.VarChar(32)
-  //codeExpiresIn DateTime?     @db.DateTime(0)
   codeExpiresIn DateTime?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -65,14 +63,11 @@ model User {
   name          String        @db.VarChar(512)
   email         String        @unique @db.VarChar(512)
   password      String        @db.Text
-  //type          UserType      @default(app)
-  //cpf           String        @unique @db.VarChar(11)
   phone         String        @unique @db.VarChar(11)
   //birthDate     String        @db.VarChar(10)
   status        AccountStatus
   imageUrl      String?       @db.Text
   code          String?       @db.VarChar(32)
-  //codeExpiresIn DateTime?     @db.DateTime(0)
   codeExpiresIn DateTime?
   createdAt     DateTime      @default(now())
   updatedAt     DateTime      @updatedAt
@@ -115,7 +110,6 @@ enum ChaveiroStatus {
 model Cliente {
   id       Int           @id @default(autoincrement())
   name     String        @db.VarChar(512)
-  //imageUrl String?       @db.Text
   imageUrl String?       @db.VarChar(1000)
   service  String       @default("")
   phone    String        @db.VarChar(512)
@@ -137,9 +131,7 @@ model Notification {
   endereco  String   @default("")
   phone     String   @default("")
   imageUrl  String   @db.VarChar(1000)
-  //imageUrl  String   @default("")
   service   String   @default("")
-  //status    String   @default("novo")
   status    NotificationStatus @default(novo)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -166,9 +158,8 @@ model Message {
 
 model Servico {
   id       Int           @id @default(autoincrement())
-  cliente  String        @db.VarChar(512)
+  cliente  String?       @db.VarChar(512)
   imageUrl String?       @db.VarChar(1000)
-  //imageUrl String?       @db.Text
   service  ServiceType
   value    String        @db.VarChar(512)
   status   ServiceStatus

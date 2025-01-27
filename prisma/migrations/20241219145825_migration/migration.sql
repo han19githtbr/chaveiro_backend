@@ -132,7 +132,7 @@ CREATE TABLE `Message` (
 -- CreateTable
 CREATE TABLE `Servico` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `cliente` VARCHAR(512) NOT NULL,
+    `cliente` VARCHAR(512) NULL,
     `imageUrl` VARCHAR(1000) NULL,
     `service` ENUM('copia', 'conserto') NOT NULL,
     `value` VARCHAR(512) NOT NULL,

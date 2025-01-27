@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.9"
 
 services:
   app:
@@ -8,19 +8,21 @@ services:
     env_file:
       - .env
     volumes:
-      - ./tmp/uploads:/home/app/tmp/uploads
+      - ./tmp/uploads:/app/tmp/uploads
     depends_on:
       - db
+    restart: always # Reinicia automaticamente em caso de falha
 
   db:
     image: mysql:8
     environment:
       MYSQL_DATABASE: chaveiro_db_ws
-      MYSQL_ROOT_PASSWORD: ''
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
     ports:
       - "3306:3306"
     volumes:
       - db_data:/var/lib/mysql
+    restart: always # Reinicia automaticamente em caso de falha
 
 volumes:
   db_data:

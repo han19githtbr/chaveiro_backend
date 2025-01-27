@@ -1,7 +1,6 @@
 // eslint-disable-next-line linebreak-style, quotes
 import "express-async-errors";
 // eslint-disable-next-line linebreak-style
-
 import express from "express";
 import cors from "cors";
 import cookieParser from "cookie-parser";
@@ -18,9 +17,7 @@ import routes from "./modules/index.routes";
 
 import AppException from "@errors/app-exception";
 import ErrorMessages from "@errors/error-messages";
-//import uploadRoutes from './modules/upload-file/upload-file.routes';
 
-//import path from 'path';
 
 dotenv.config();
 
@@ -72,7 +69,7 @@ class App {
         err: any,
         req: express.Request,
         res: express.Response,
-        next: express.NextFunction
+        next: express.NextFunction,
       ) => {
         if (err instanceof AppException) {
           res.status(err.status).json({ error: err.message });

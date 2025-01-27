@@ -1,24 +1,21 @@
 /* eslint-disable indent */
 /* eslint-disable quotes */
-import { ServiceStatus } from '@prisma/client';
-import { z } from 'zod';
+import { ServiceStatus } from "@prisma/client";
+import { z } from "zod";
 
 // eslint-disable-next-line linebreak-style
 
 export type CreateServicoDto = z.output<typeof CreateServico>;
 export const CreateServico = z.object({
-  cliente: z.string().trim().min(1),
+  cliente: z.string().trim().min(1).optional(),
 
   // Validação personalizada para 'service'
   service: z
     .string()
     .trim()
-    .refine((value) => ['copia', 'conserto'].includes(value), {
+    .refine((value) => ["copia", "conserto"].includes(value), {
       message: "Serviço inválido",
     }),
-    /*.refine((value) => value.length > 0, {
-      message: "Serviço não pode ser vazio",
-    }),*/
 
   // Validação personalizada para 'status'
   status: z.nativeEnum(ServiceStatus).optional(),
@@ -32,6 +29,4 @@ export const CreateServico = z.object({
     }),
 
   imageUrl: z.string().trim().url().optional(),
-  //imageUrl: z.string().max(1000),
 });
-

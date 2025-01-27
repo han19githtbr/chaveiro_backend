@@ -10,7 +10,7 @@ import { CreateServicoDto } from "./dtos/create-service.dto";
 import { UpdateServicoDto } from "./dtos/update-service.dto";
 
 interface ServicoCreateInput {
-  cliente: string;
+  cliente?: string;
   service: ServiceType;
   value: string;
   status: ServiceStatus;

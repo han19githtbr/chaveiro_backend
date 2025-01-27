@@ -1,5 +1,5 @@
 # Etapa 1: Construir a aplicação
-FROM node:20.10.0 AS builder
+FROM node:18.20.5 AS builder
 
 WORKDIR /home/app
 COPY ./package*.json ./
@@ -17,18 +17,23 @@ RUN npx prisma generate
 RUN npm run build
 
 # Etapa 2: Preparar a imagem de produção
-FROM node:20.10.0 AS production
+FROM node:18.20.5 AS production
 
-WORKDIR /home/app
+WORKDIR /app
 
 # Copiar apenas os arquivos necessários para produção
-COPY --from=builder /home/app/node_modules ./node_modules
-COPY --from=builder /home/app/dist ./dist
-COPY --from=builder /home/app/prisma ./prisma
+COPY --from=builder /app/node_modules ./node_modules
+COPY --from=builder /app/dist ./dist
+COPY --from=builder /app/prisma ./prisma
+
+# Criar o usuário e grupo 'node' (se ainda não existirem)
+RUN addgroup -S node && adduser -S -G node node
+
+# Definir o usuário e grupo para evitar problemas de permissão
+USER node
 
 # Expor a porta do container
 EXPOSE 3000
 
 # Comando para rodar a aplicação
 CMD ["npm", "start"]
-
