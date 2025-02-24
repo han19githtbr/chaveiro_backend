@@ -86,3 +86,20 @@ npx prisma db push
 ## Caso já tenha migrações configuradas:
 
 npx prisma migrate dev
+
+
+## Configurando o firebase
+
+npm install -g firebase-tools
+
+firebase login
+
+firebase init
+
+firebase functions:config:set db.url="postgresql://handydev:dtx0os8UU7Z2PV_lGmEMFQ@andydev90-4338.jxf.gcp-us-east1.cockroachlabs.cloud:26257/defaultdb?sslmode=verify-full"
+
+## para evitar o plano blaze
+
+firebase emulators:start(Inicie o emulador)
+
+http://localhost:5001/keybackend-eddbd/us-central1/<nomeDaSuaFuncao>
